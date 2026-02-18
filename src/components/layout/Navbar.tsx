@@ -8,6 +8,7 @@ const navLinks = [
   { label: "Kämpfe", href: "#kaempfe" },
   { label: "Galerie", href: "#galerie" },
   { label: "Videos", href: "#videos" },
+  { label: "Unterstützer", href: "#unterstuetzer" },
   { label: "Kontakt", href: "#kontakt" },
 ];
 

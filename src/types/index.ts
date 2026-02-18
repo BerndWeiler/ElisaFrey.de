@@ -27,3 +27,11 @@ export interface Video {
   src: string;
   title: string;
 }
+
+export interface Sponsor {
+  name: string;
+  logo: string;
+  url: string;
+  /** Logo is already light/suited for dark backgrounds — skip invert filter */
+  light?: boolean;
+}

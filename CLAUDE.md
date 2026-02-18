@@ -14,13 +14,25 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **GitHub:** `BerndWeiler/ElisaFrey.de` (private)
 - **Branch:** `main`
 
+## Design-Prinzipien
+
+Dieses Projekt hat einen **Premium-Anspruch**. Jede neue Komponente oder Sektion muss sich nahtlos ins bestehende Design einfügen — visuell konsistent, hochwertig und elegant. Konkret bedeutet das:
+
+- **Bestehende Patterns studieren, bevor du neuen Code schreibst.** Lies mindestens 2–3 existierende Sektionen/Komponenten, um Abstände, Farben, Hover-Effekte und Animationen zu verstehen. Neue Elemente müssen sich anfühlen, als wären sie vom selben Designer.
+- **Farbpalette strikt einhalten:** Gold (#C8A24E) als Akzent, dunkler Hintergrund (#0a0a0a), helle Schrift (#f5f5f5). Keine neuen Farben ohne explizite Absprache.
+- **Glass-Morphism konsequent nutzen:** Karten verwenden `.glass-card` / `.glass-card-hover` aus `globals.css`. Keine eigenen Background/Border-Werte erfinden, wenn eine bestehende Utility-Klasse passt.
+- **Hover-Effekte edel und subtil:** Sanftes Scale (max 1.05), dezenter Gold-Glow, weiche Transitions (300–500ms). Kein aggressives Springen oder grelle Farbwechsel.
+- **Abstände und Typografie konsistent:** Sektionen nutzen `py-32 px-6`, Content-Container `max-w-7xl mx-auto`. Headings immer über `SectionHeading`-Komponente. Bebas Neue für Display, Inter für Body.
+- **Animationen:** `FadeIn` und `StaggerChildren` aus `src/components/animations/` verwenden. Keine neuen Animation-Libraries oder eigene `motion.div`-Konfigurationen, wenn die bestehenden Wrapper ausreichen.
+- **Mobile-first responsive:** Mindestens eine Breakpoint-Variante (md:) für Grid-Layouts.
+
 ## Architecture
 
 Single-page portfolio site for boxer Elisa Frey. Next.js 16 App Router with Tailwind CSS v4, Framer Motion animations, and Lenis smooth scrolling. All content is German.
 
 ### Page Flow
 
-`page.tsx` renders sections in order: `Hero → Fights → Gallery → Videos → Contact`, wrapped in `SmoothScroll` (Lenis) and `Navbar`. All sections are `"use client"` components.
+`page.tsx` renders sections in order: `Hero → Fights → Gallery → Videos → Sponsors → Contact`, wrapped in `SmoothScroll` (Lenis) and `Navbar`. All sections are `"use client"` components.
 
 ### Key Patterns
 
@@ -44,7 +56,7 @@ Single-page portfolio site for boxer Elisa Frey. Next.js 16 App Router with Tail
   </div>
 </section>
 ```
-Section IDs must match Navbar `href` anchors (`#kaempfe`, `#galerie`, `#videos`, `#kontakt`).
+Section IDs must match Navbar `href` anchors (`#kaempfe`, `#galerie`, `#videos`, `#unterstuetzer`, `#kontakt`).
 
 **Data layer** — all content lives in `src/lib/data.ts` with TypeScript interfaces in `src/types/index.ts`. No CMS or API.
 
@@ -60,6 +72,10 @@ Section IDs must match Navbar `href` anchors (`#kaempfe`, `#galerie`, `#videos`,
 - `Button` — styled button/link component
 - `FilmStrip` — auto-scrolling horizontal image strip
 - `Lightbox` — full-screen image overlay for gallery
+
+**Sections** (`src/components/sections/`):
+- `Hero` — cinematic intro with Ken Burns zoom (8s), TextReveal name, burning fuse animation (gold spark traverses a line, then explodes into particles revealing the 5-0-0 record with spring pop). Timeline: 0.3s name → 1.0–2.5s fuse burns → 2.6s record reveal → 3.2s scroll indicator. Explosion particles use same technique as `RecordStat` sparkles.
+- `Sponsors` — sponsor logos in glass-cards with white inner area (`bg-white/90`) for correct logo display on dark background
 
 **Layout** (`src/components/layout/`):
 - `Navbar` — sticky nav with scroll-triggered glass background

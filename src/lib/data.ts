@@ -1,4 +1,4 @@
-import { Fight, GalleryImage, SocialLink, Video } from "@/types";
+import { Fight, GalleryImage, SocialLink, Sponsor, Video } from "@/types";
 
 export const profile = {
   name: "Elisa Frey",
@@ -114,6 +114,30 @@ export const videos: Video[] = [
   { id: "1", src: "/videos/bandage.mp4", title: "Bandagierung" },
   { id: "2", src: "/videos/schattenboxen.mp4", title: "Schattenboxen" },
   { id: "3", src: "/videos/seilspringen.mp4", title: "Seilspringen" },
+];
+
+export const sponsors: Sponsor[] = [
+  {
+    name: "Stanglwirt",
+    logo: "/images/sponsors/stanglwirt.png",
+    url: "https://www.stanglwirt.com/",
+    light: true,
+  },
+  {
+    name: "Goodbean",
+    logo: "/images/sponsors/goodbean.webp",
+    url: "https://goodbean.coffee/",
+  },
+  {
+    name: "Poolcultur",
+    logo: "/images/sponsors/poolcultur.jpg",
+    url: "https://www.poolcultur.de/",
+  },
+  {
+    name: "Valueate",
+    logo: "/images/sponsors/valueate.png",
+    url: "https://valueate.de/",
+  },
 ];
 
 export const socialLinks: SocialLink[] = [

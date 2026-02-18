@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# source media (originals — copies live in public/)
+/Elisa_Videos/
+/Bilder Elisa/
+
+# claude code
+.claude/

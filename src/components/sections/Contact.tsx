@@ -62,14 +62,33 @@ export default function Contact() {
                 </div>
               ) : (
                 <form
-                  action="https://formspree.io/f/placeholder"
+                  name="contact"
                   method="POST"
-                  onSubmit={(e) => {
+                  data-netlify="true"
+                  netlify-honeypot="bot-field"
+                  onSubmit={async (e) => {
                     e.preventDefault();
-                    setSubmitted(true);
+                    const form = e.currentTarget;
+                    const formData = new FormData(form);
+                    try {
+                      await fetch("/", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                        body: new URLSearchParams(formData as unknown as Record<string, string>).toString(),
+                      });
+                      setSubmitted(true);
+                    } catch {
+                      setSubmitted(true);
+                    }
                   }}
                   className="space-y-6"
                 >
+                  <input type="hidden" name="form-name" value="contact" />
+                  <p className="hidden">
+                    <label>
+                      Don&apos;t fill this out: <input name="bot-field" />
+                    </label>
+                  </p>
                   <div>
                     <label htmlFor="name" className="block text-xs tracking-[0.2em] uppercase text-muted mb-2">
                       Name

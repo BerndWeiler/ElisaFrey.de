@@ -50,6 +50,7 @@ function generateSparkles(count: number) {
       delay: (i / count) * 1.2 + Math.random() * 0.3,
       size: 2 + Math.random() * 3,
       duration: 0.7 + Math.random() * 0.5,
+      repeatDelay: 0.6 + Math.random() * 0.4,
     };
   });
 }
@@ -135,7 +136,7 @@ export default function RecordStat({ value, label, type }: RecordStatProps) {
                   duration: s.duration,
                   delay: s.delay,
                   repeat: Infinity,
-                  repeatDelay: 0.6 + Math.random() * 0.4,
+                  repeatDelay: s.repeatDelay,
                   ease: "easeOut",
                 }}
               />

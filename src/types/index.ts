@@ -16,12 +16,6 @@ export interface GalleryImage {
   span?: "tall" | "wide" | "normal";
 }
 
-export interface SocialLink {
-  platform: string;
-  url: string;
-  label: string;
-}
-
 export interface Video {
   id: string;
   src: string;

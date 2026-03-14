@@ -1,4 +1,4 @@
-import { Fight, GalleryImage, SocialLink, Sponsor, Video } from "@/types";
+import { Fight, GalleryImage, Sponsor, Video } from "@/types";
 
 export const profile = {
   name: "Elisa Frey",
@@ -121,7 +121,6 @@ export const sponsors: Sponsor[] = [
     name: "Stanglwirt",
     logo: "/images/sponsors/stanglwirt.png",
     url: "https://www.stanglwirt.com/",
-    light: true,
   },
   {
     name: "Goodbean",
@@ -137,13 +136,5 @@ export const sponsors: Sponsor[] = [
     name: "Valueate",
     logo: "/images/sponsors/valueate.png",
     url: "https://valueate.de/",
-  },
-];
-
-export const socialLinks: SocialLink[] = [
-  {
-    platform: "Instagram",
-    url: "https://www.instagram.com/eliisa.frey/",
-    label: "@eliisa.frey",
   },
 ];

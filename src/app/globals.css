@@ -131,6 +131,35 @@ body {
   background-size: 300px 200px;
 }
 
+/* Spark Border — animated fuse around Save-the-Date image */
+.spark-spin {
+  animation: spark-rotate 4s linear infinite;
+}
+
+@keyframes spark-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spark-glow {
+  animation: spark-glow-pulse 4s ease-in-out infinite;
+}
+
+@keyframes spark-glow-pulse {
+  0%, 100% { box-shadow: 0 0 15px rgba(200,162,78,0.12), 0 0 40px rgba(200,162,78,0.04); }
+  50% { box-shadow: 0 0 25px rgba(200,162,78,0.2), 0 0 50px rgba(200,162,78,0.08); }
+}
+
+/* Save-the-Date image breathing zoom */
+@keyframes breathe-zoom {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.breathe-zoom {
+  animation: breathe-zoom 6s ease-in-out infinite;
+}
+
 /* Nav Link Underline Animation */
 .nav-link {
   position: relative;

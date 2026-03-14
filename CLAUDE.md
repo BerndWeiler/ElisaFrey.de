@@ -13,6 +13,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - **GitHub:** `BerndWeiler/ElisaFrey.de` (private)
 - **Branch:** `main`
+- **Hosting:** Netlify (auto-deploy on push to `main`)
 
 ## Design-Prinzipien
 
@@ -58,7 +59,7 @@ Single-page portfolio site for boxer Elisa Frey. Next.js 16 App Router with Tail
 ```
 Section IDs must match Navbar `href` anchors (`#kaempfe`, `#galerie`, `#videos`, `#unterstuetzer`, `#kontakt`).
 
-**Data layer** — all content lives in `src/lib/data.ts` with TypeScript interfaces in `src/types/index.ts`. No CMS or API.
+**Data layer** — all content lives in `src/lib/data.ts` with TypeScript interfaces in `src/types/index.ts`. No CMS or API. Fight data is sourced from [BoxRec](https://boxrec.com/en/box-pro/1235889).
 
 ### Component Inventory
 

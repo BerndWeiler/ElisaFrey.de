@@ -9,12 +9,14 @@ import Gallery from "@/components/sections/Gallery";
 import Videos from "@/components/sections/Videos";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/layout/Footer";
+import SaveTheDate from "@/components/ui/SaveTheDate";
 
 export default function Home() {
   return (
     <SmoothScroll>
       <Navbar />
       <main>
+        <SaveTheDate />
         <Hero />
         <Fights />
         <Gallery />

@@ -66,13 +66,8 @@ function calcTimeLeft(): TimeLeft | null {
 }
 
 export default function SaveTheDate() {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(calcTimeLeft);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setVisible(true), 1000);
-    return () => clearTimeout(timer);
-  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => setTimeLeft(calcTimeLeft()), 1000);

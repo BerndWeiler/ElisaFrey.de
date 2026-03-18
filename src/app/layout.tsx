@@ -3,6 +3,7 @@ import { bebasNeue, inter } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.elisafrey.com"),
   title: "Elisa Frey | Unbesiegte Deutsche Meisterin im Profi-Boxen",
   description:
     "Elisa Frey – Unbesiegte Profi-Boxerin (5-0-0, 100% KO-Rate), BDB Deutsche Meisterin im Super-Fliegengewicht.",
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
     title: "Elisa Frey | Unbesiegte Deutsche Meisterin",
     description:
       "Unbesiegte Profi-Boxerin (5-0-0, 100% KO-Rate), BDB Deutsche Meisterin im Super-Fliegengewicht.",
+    url: "https://www.elisafrey.com",
     type: "website",
     locale: "de_DE",
   },

@@ -102,33 +102,30 @@ export default function Contact() {
                 </div>
               ) : (
                 <form
-                  name="contact"
-                  method="POST"
-                  data-netlify="true"
-                  netlify-honeypot="bot-field"
                   onSubmit={async (e) => {
                     e.preventDefault();
                     const form = e.currentTarget;
                     const formData = new FormData(form);
                     try {
-                      await fetch("/", {
+                      const res = await fetch("https://formsubmit.co/ajax/bjoern.schulz.coach@gmx.de", {
                         method: "POST",
-                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                        body: new URLSearchParams(formData as unknown as Record<string, string>).toString(),
+                        headers: { "Content-Type": "application/json", Accept: "application/json" },
+                        body: JSON.stringify({
+                          name: formData.get("name"),
+                          email: formData.get("email"),
+                          _subject: formData.get("subject"),
+                          message: formData.get("message"),
+                        }),
                       });
-                      setSubmitted(true);
+                      if (res.ok) setSubmitted(true);
                     } catch {
                       setSubmitted(true);
                     }
                   }}
                   className="space-y-6"
                 >
-                  <input type="hidden" name="form-name" value="contact" />
-                  <p className="hidden">
-                    <label>
-                      Don&apos;t fill this out: <input name="bot-field" />
-                    </label>
-                  </p>
+                  <input type="hidden" name="_captcha" value="false" />
+                  <input type="text" name="_honey" className="hidden" />
                   <div>
                     <label htmlFor="name" className="block text-xs tracking-[0.2em] uppercase text-muted mb-2">
                       Name

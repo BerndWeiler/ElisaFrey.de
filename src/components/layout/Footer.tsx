@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { profile } from "@/lib/data";
 
 export default function Footer() {
@@ -18,6 +19,16 @@ export default function Footer() {
         >
           {profile.instagramHandle}
         </a>
+
+        <div className="flex items-center gap-4">
+          <Link href="/impressum" className="text-foreground/20 hover:text-foreground/40 transition-colors text-xs tracking-wider">
+            Impressum
+          </Link>
+          <span className="text-foreground/10">|</span>
+          <Link href="/datenschutz" className="text-foreground/20 hover:text-foreground/40 transition-colors text-xs tracking-wider">
+            Datenschutz
+          </Link>
+        </div>
 
         <span className="text-foreground/20 text-xs tracking-wider">
           &copy; {new Date().getFullYear()} Elisa Frey. Alle Rechte vorbehalten.

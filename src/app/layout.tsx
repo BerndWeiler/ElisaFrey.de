@@ -3,9 +3,9 @@ import { bebasNeue, inter } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.elisafrey.com"),
+  metadataBase: new URL("https://elisafrey.com"),
   alternates: {
-    canonical: "https://www.elisafrey.com",
+    canonical: "https://elisafrey.com",
   },
   title: "Elisa Frey | Unbesiegte Deutsche Meisterin im Profi-Boxen",
   description:
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     title: "Elisa Frey | Unbesiegte Deutsche Meisterin",
     description:
       "Unbesiegte Profi-Boxerin (5-0-0, 100% KO-Rate), BDB Deutsche Meisterin im Super-Fliegengewicht.",
-    url: "https://www.elisafrey.com",
+    url: "https://elisafrey.com",
     type: "website",
     locale: "de_DE",
     images: [
@@ -49,8 +49,8 @@ const jsonLd = {
     {
       "@type": "Person",
       name: "Elisa Frey",
-      url: "https://www.elisafrey.com",
-      image: "https://www.elisafrey.com/images/hero-belt.jpg",
+      url: "https://elisafrey.com",
+      image: "https://elisafrey.com/images/hero-belt.jpg",
       jobTitle: "Professionelle Boxerin",
       description:
         "Unbesiegte Profi-Boxerin (5-0-0, 100% KO-Rate), BDB Deutsche Meisterin im Super-Fliegengewicht.",
@@ -84,7 +84,7 @@ const jsonLd = {
     {
       "@type": "WebSite",
       name: "Elisa Frey",
-      url: "https://www.elisafrey.com",
+      url: "https://elisafrey.com",
       inLanguage: "de",
     },
   ],

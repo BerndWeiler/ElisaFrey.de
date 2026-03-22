@@ -7,7 +7,7 @@ import { videos } from "@/lib/data";
 
 export default function Videos() {
   return (
-    <section id="videos" className="relative py-32 px-6">
+    <section id="videos" className="relative py-20 md:py-32 px-6">
       <div className="mx-auto max-w-7xl">
         <SectionHeading title="Videos" />
 

@@ -7,6 +7,7 @@ import AnimatedCounter from "./AnimatedCounter";
 interface RecordStatProps {
   value: number;
   label: string;
+  shortLabel?: string;
   type: "wins" | "losses" | "draws";
 }
 
@@ -55,7 +56,7 @@ function generateSparkles(count: number) {
   });
 }
 
-export default function RecordStat({ value, label, type }: RecordStatProps) {
+export default function RecordStat({ value, label, shortLabel, type }: RecordStatProps) {
   const [hovered, setHovered] = useState(false);
   const sparkles = useMemo(() => generateSparkles(28), []);
 
@@ -157,7 +158,14 @@ export default function RecordStat({ value, label, type }: RecordStatProps) {
             animate={{ color: hovered ? "#C8A24E" : "#888888" }}
             transition={{ duration: 0.3 }}
           >
-            {label}
+            {shortLabel ? (
+              <>
+                <span className="hidden md:inline">{label}</span>
+                <span className="md:hidden">{shortLabel}</span>
+              </>
+            ) : (
+              label
+            )}
           </motion.p>
         </div>
       </motion.div>
@@ -188,7 +196,14 @@ export default function RecordStat({ value, label, type }: RecordStatProps) {
         <AnimatedCounter target={value} />
       </div>
       <p className="mt-2 text-muted text-xs tracking-[0.2em] uppercase">
-        {label}
+        {shortLabel ? (
+          <>
+            <span className="hidden md:inline">{label}</span>
+            <span className="md:hidden">{shortLabel}</span>
+          </>
+        ) : (
+          label
+        )}
       </p>
     </motion.div>
   );

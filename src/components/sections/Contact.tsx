@@ -11,7 +11,7 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
 
   return (
-    <section id="kontakt" className="relative py-32 px-6">
+    <section id="kontakt" className="relative py-20 md:py-32 px-6">
       <div className="mx-auto max-w-7xl">
         <SectionHeading title="Kontakt" subtitle="Für Anfragen, Kooperationen oder Buchungen" />
 

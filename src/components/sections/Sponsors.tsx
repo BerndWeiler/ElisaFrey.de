@@ -9,7 +9,7 @@ import { staggerItem } from "@/components/animations/StaggerChildren";
 
 export default function Sponsors() {
   return (
-    <section id="unterstuetzer" className="relative py-32 px-6">
+    <section id="unterstuetzer" className="relative py-20 md:py-32 px-6">
       <div className="mx-auto max-w-5xl">
         <SectionHeading title="Unterstützer" />
 

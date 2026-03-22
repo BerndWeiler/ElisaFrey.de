@@ -12,7 +12,7 @@ export default function Gallery() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   return (
-    <section id="galerie" className="relative py-32">
+    <section id="galerie" className="relative py-20 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeading title="Galerie" />
       </div>

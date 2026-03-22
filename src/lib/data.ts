@@ -111,9 +111,9 @@ export const galleryImages: GalleryImage[] = [
 ];
 
 export const videos: Video[] = [
-  { id: "1", src: "/videos/bandage.mp4", title: "Bandagierung" },
-  { id: "2", src: "/videos/schattenboxen.mp4", title: "Schattenboxen" },
-  { id: "3", src: "/videos/seilspringen.mp4", title: "Seilspringen" },
+  { id: "1", src: "/videos/bandage.mp4", title: "Bandagierung", poster: "/images/poster-bandage.jpg" },
+  { id: "2", src: "/videos/schattenboxen.mp4", title: "Schattenboxen", poster: "/images/poster-schattenboxen.jpg" },
+  { id: "3", src: "/videos/seilspringen.mp4", title: "Seilspringen", poster: "/images/poster-seilspringen.jpg" },
 ];
 
 export const sponsors: Sponsor[] = [

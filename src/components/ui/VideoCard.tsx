@@ -39,6 +39,7 @@ export default function VideoCard({ video }: VideoCardProps) {
           loop
           playsInline
           preload="none"
+          poster={video.poster}
           className="absolute inset-0 w-full h-full object-cover"
         />
       </div>

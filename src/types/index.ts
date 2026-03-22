@@ -20,6 +20,7 @@ export interface Video {
   id: string;
   src: string;
   title: string;
+  poster?: string;
 }
 
 export interface Sponsor {

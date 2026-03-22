@@ -3,6 +3,8 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Datenschutz | Elisa Frey",
+  description: "Datenschutzerklärung der Website elisafrey.com.",
+  robots: { index: false, follow: false },
 };
 
 export default function Datenschutz() {

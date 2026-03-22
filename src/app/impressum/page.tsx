@@ -3,6 +3,8 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Impressum | Elisa Frey",
+  description: "Impressum der Website elisafrey.com – Angaben gemäß § 5 TMG.",
+  robots: { index: false, follow: false },
 };
 
 export default function Impressum() {

@@ -17,7 +17,7 @@ export default function FilmStrip({ images, onImageClick }: FilmStripProps) {
         {doubled.map((image, i) => {
           const realIndex = i % images.length;
           return (
-            <div
+            <figure
               key={i}
               className="group relative flex-shrink-0 cursor-pointer overflow-hidden rounded-xl"
               onClick={() => onImageClick(realIndex)}
@@ -30,8 +30,9 @@ export default function FilmStrip({ images, onImageClick }: FilmStripProps) {
                 className="h-[280px] md:h-[400px] w-auto object-cover transition-transform duration-300 group-hover:scale-105"
                 sizes="(max-width: 768px) 280px, 400px"
               />
+              <figcaption className="sr-only">{image.alt}</figcaption>
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
-            </div>
+            </figure>
           );
         })}
       </div>

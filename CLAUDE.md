@@ -13,7 +13,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - **GitHub:** `BerndWeiler/ElisaFrey.de` (private)
 - **Branch:** `main`
-- **Hosting:** Netlify (auto-deploy on push to `main`)
+- **Hosting:** Hostinger (serves static files from `deploy` branch, built via GitHub Actions)
 
 ## Design-Prinzipien
 

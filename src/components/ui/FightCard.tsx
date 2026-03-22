@@ -10,7 +10,7 @@ interface FightCardProps {
 
 export default function FightCard({ fight }: FightCardProps) {
   return (
-    <motion.div
+    <motion.article
       variants={staggerItem}
       className={
         fight.isTitle
@@ -46,6 +46,6 @@ export default function FightCard({ fight }: FightCardProps) {
           </span>
         </div>
       </div>
-    </motion.div>
+    </motion.article>
   );
 }

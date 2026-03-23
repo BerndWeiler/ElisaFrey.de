@@ -68,11 +68,31 @@ const jsonLd = {
     {
       "@type": "SportsEvent",
       name: "BDB Deutsche Meisterschaft im Super-Fliegengewicht",
+      image: "https://elisafrey.com/images/hero-belt.jpg",
       startDate: "2025-04-15",
+      endDate: "2025-04-15",
+      eventStatus: "https://schema.org/EventScheduled",
       location: {
         "@type": "Place",
         name: "Stanglwirt",
         address: "Going am Wilden Kaiser, Österreich",
+      },
+      performer: {
+        "@type": "Person",
+        name: "Elisa Frey",
+        url: "https://elisafrey.com",
+      },
+      organizer: {
+        "@type": "Organization",
+        name: "BDB — Bund Deutscher Berufsboxer",
+      },
+      offers: {
+        "@type": "Offer",
+        availability: "https://schema.org/SoldOut",
+        price: "0",
+        priceCurrency: "EUR",
+        validFrom: "2025-03-01",
+        url: "https://elisafrey.com/#kaempfe",
       },
       competitor: [
         { "@type": "Person", name: "Elisa Frey" },
@@ -80,6 +100,35 @@ const jsonLd = {
       ],
       description:
         "BDB Deutsche Meisterschaft — Elisa Frey vs Nicole Purwins, Sieg durch TKO in Runde 5.",
+    },
+    {
+      "@type": "SportsEvent",
+      name: "Elisa Frey — Nächster Kampf am Stanglwirt",
+      image: "https://elisafrey.com/images/Savethedate.jpeg",
+      startDate: "2026-04-12T20:00:00+02:00",
+      endDate: "2026-04-12T23:00:00+02:00",
+      eventStatus: "https://schema.org/EventScheduled",
+      location: {
+        "@type": "Place",
+        name: "Stanglwirt",
+        address: "Going am Wilden Kaiser, Österreich",
+      },
+      performer: {
+        "@type": "Person",
+        name: "Elisa Frey",
+        url: "https://elisafrey.com",
+      },
+      organizer: {
+        "@type": "Organization",
+        name: "BDB — Bund Deutscher Berufsboxer",
+      },
+      offers: {
+        "@type": "Offer",
+        availability: "https://schema.org/InStock",
+        url: "https://elisafrey.com",
+      },
+      description:
+        "Save the Date — Elisa Frey boxt am 12.04.2026 im Stanglwirt, Going am Wilden Kaiser.",
     },
     {
       "@type": "WebSite",

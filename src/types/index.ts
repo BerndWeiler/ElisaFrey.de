@@ -4,8 +4,8 @@ export interface Fight {
   date: string;
   location: string;
   result: "W" | "L" | "D";
-  method: string;
-  round: number;
+  method?: string;
+  round?: number;
   isTitle?: boolean;
   title?: string;
 }

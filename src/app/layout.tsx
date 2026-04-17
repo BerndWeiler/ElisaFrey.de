@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   },
   title: "Elisa Frey | Unbesiegte Deutsche Meisterin im Profi-Boxen",
   description:
-    "Elisa Frey – Unbesiegte Profi-Boxerin (5-0-0, 100% KO-Rate), BDB Deutsche Meisterin im Super-Fliegengewicht.",
+    "Elisa Frey – Unbesiegte Profi-Boxerin (6-0-0, 83% KO-Rate), BDB Deutsche Meisterin im Super-Fliegengewicht.",
   keywords: [
     "Elisa Frey",
     "Boxen",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Elisa Frey | Unbesiegte Deutsche Meisterin",
     description:
-      "Unbesiegte Profi-Boxerin (5-0-0, 100% KO-Rate), BDB Deutsche Meisterin im Super-Fliegengewicht.",
+      "Unbesiegte Profi-Boxerin (6-0-0, 83% KO-Rate), BDB Deutsche Meisterin im Super-Fliegengewicht.",
     url: "https://elisafrey.com",
     type: "website",
     locale: "de_DE",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Elisa Frey | Unbesiegte Deutsche Meisterin",
     description:
-      "Unbesiegte Profi-Boxerin (5-0-0, 100% KO-Rate), BDB Deutsche Meisterin im Super-Fliegengewicht.",
+      "Unbesiegte Profi-Boxerin (6-0-0, 83% KO-Rate), BDB Deutsche Meisterin im Super-Fliegengewicht.",
     images: ["/images/hero-belt.jpg"],
   },
 };
@@ -53,7 +53,7 @@ const jsonLd = {
       image: "https://elisafrey.com/images/hero-belt.jpg",
       jobTitle: "Professionelle Boxerin",
       description:
-        "Unbesiegte Profi-Boxerin (5-0-0, 100% KO-Rate), BDB Deutsche Meisterin im Super-Fliegengewicht.",
+        "Unbesiegte Profi-Boxerin (6-0-0, 83% KO-Rate), BDB Deutsche Meisterin im Super-Fliegengewicht.",
       sameAs: [
         "https://www.instagram.com/eliisa.frey/",
         "https://boxrec.com/en/box-pro/1235889",
@@ -71,7 +71,7 @@ const jsonLd = {
       image: "https://elisafrey.com/images/hero-belt.jpg",
       startDate: "2025-04-15",
       endDate: "2025-04-15",
-      eventStatus: "https://schema.org/EventScheduled",
+      eventStatus: "https://schema.org/EventCompleted",
       location: {
         "@type": "Place",
         name: "Stanglwirt",
@@ -103,14 +103,14 @@ const jsonLd = {
     },
     {
       "@type": "SportsEvent",
-      name: "Elisa Frey — Nächster Kampf am Stanglwirt",
-      image: "https://elisafrey.com/images/Savethedate.jpeg",
+      name: "BDB German Super Fly — Titelverteidigung",
+      image: "https://elisafrey.com/images/victory-stanglwirt.jpg",
       startDate: "2026-04-12T20:00:00+02:00",
       endDate: "2026-04-12T23:00:00+02:00",
-      eventStatus: "https://schema.org/EventScheduled",
+      eventStatus: "https://schema.org/EventCompleted",
       location: {
         "@type": "Place",
-        name: "Stanglwirt",
+        name: "Hotel Stanglwirt",
         address: "Going am Wilden Kaiser, Österreich",
       },
       performer: {
@@ -124,11 +124,18 @@ const jsonLd = {
       },
       offers: {
         "@type": "Offer",
-        availability: "https://schema.org/InStock",
-        url: "https://elisafrey.com",
+        availability: "https://schema.org/SoldOut",
+        price: "0",
+        priceCurrency: "EUR",
+        validFrom: "2026-03-01",
+        url: "https://elisafrey.com/#kaempfe",
       },
+      competitor: [
+        { "@type": "Person", name: "Elisa Frey" },
+        { "@type": "Person", name: "Oliwia Koziura" },
+      ],
       description:
-        "Save the Date — Elisa Frey boxt am 12.04.2026 im Stanglwirt, Going am Wilden Kaiser.",
+        "BDB German Super Fly — Elisa Frey verteidigt ihren Titel am 12.04.2026 im Hotel Stanglwirt gegen Oliwia Koziura und gewinnt.",
     },
     {
       "@type": "WebSite",

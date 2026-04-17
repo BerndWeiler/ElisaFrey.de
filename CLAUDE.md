@@ -98,6 +98,15 @@ Videos are self-hosted as MP4 files in `public/videos/` (not iframe embeds). The
 
 Lenis is initialized in `SmoothScroll.tsx`. Use `data-lenis-prevent` on containers that need native scroll behavior (e.g., horizontal carousels).
 
+### Structured Data (JSON-LD)
+
+Structured data lives in `src/app/layout.tsx` as a `jsonLd` object with `@graph` containing:
+- **Person** — Elisa Frey profile
+- **SportsEvent(s)** — past and upcoming fights. Each event MUST include all Google-recommended fields: `image`, `startDate`, `endDate`, `eventStatus`, `performer`, `organizer`, `offers`, `location`, `description`. When adding new fights, copy an existing SportsEvent entry and update the values.
+- **WebSite** — site metadata
+
+When adding a new fight/event, always add a corresponding SportsEvent entry to avoid Google Search Console warnings.
+
 ### Media Assets
 
 - **Images:** `public/images/` — optimized JPGs, served via `next/image`

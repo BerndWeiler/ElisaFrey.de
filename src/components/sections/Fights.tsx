@@ -13,12 +13,13 @@ const MOBILE_VISIBLE_COUNT = 3;
 
 export default function Fights() {
   const [showAll, setShowAll] = useState(false);
-  const titleFight = fights.find((f) => f.isTitle);
+  const titleFights = fights.filter((f) => f.isTitle);
   const otherFights = fights.filter((f) => !f.isTitle);
 
-  // Mobile: show title fight + first N-1 other fights (total = MOBILE_VISIBLE_COUNT)
-  const mobileVisibleOthers = otherFights.slice(0, MOBILE_VISIBLE_COUNT - (titleFight ? 1 : 0));
-  const mobileHiddenOthers = otherFights.slice(MOBILE_VISIBLE_COUNT - (titleFight ? 1 : 0));
+  // Mobile: show all title fights + remaining slots filled with other fights
+  const mobileOtherSlots = Math.max(0, MOBILE_VISIBLE_COUNT - titleFights.length);
+  const mobileVisibleOthers = otherFights.slice(0, mobileOtherSlots);
+  const mobileHiddenOthers = otherFights.slice(mobileOtherSlots);
   const hasHidden = mobileHiddenOthers.length > 0;
 
   return (
@@ -44,7 +45,9 @@ export default function Fights() {
 
         {/* Fight Cards — Desktop: all visible */}
         <StaggerChildren className="hidden md:block space-y-4" staggerDelay={0.12}>
-          {titleFight && <FightCard fight={titleFight} />}
+          {titleFights.map((fight) => (
+            <FightCard key={fight.id} fight={fight} />
+          ))}
           <div className="grid md:grid-cols-2 gap-4">
             {otherFights.map((fight) => (
               <FightCard key={fight.id} fight={fight} />
@@ -55,7 +58,9 @@ export default function Fights() {
         {/* Fight Cards — Mobile: collapsible */}
         <div className="md:hidden">
           <StaggerChildren className="space-y-4" staggerDelay={0.12}>
-            {titleFight && <FightCard fight={titleFight} />}
+            {titleFights.map((fight) => (
+              <FightCard key={fight.id} fight={fight} />
+            ))}
             {mobileVisibleOthers.map((fight) => (
               <FightCard key={fight.id} fight={fight} />
             ))}

@@ -40,10 +40,15 @@ export default function FightCard({ fight }: FightCardProps) {
           <span className="text-green-400 font-display text-xl tracking-wider">
             {fight.result}
           </span>
-          <span className="text-foreground/40">·</span>
-          <span className="text-gold font-medium text-sm tracking-wider uppercase">
-            {fight.method} R{fight.round}
-          </span>
+          {fight.method && (
+            <>
+              <span className="text-foreground/40">·</span>
+              <span className="text-gold font-medium text-sm tracking-wider uppercase">
+                {fight.method}
+                {fight.round ? ` R${fight.round}` : ""}
+              </span>
+            </>
+          )}
         </div>
       </div>
     </motion.article>

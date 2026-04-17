@@ -3,8 +3,8 @@ import { Fight, GalleryImage, Sponsor, Video } from "@/types";
 export const profile = {
   name: "Elisa Frey",
   nickname: "",
-  record: { wins: 5, losses: 0, draws: 0 },
-  koRate: 100,
+  record: { wins: 6, losses: 0, draws: 0 },
+  koRate: 83,
   kos: 5,
   title: "BDB Deutsche Meisterin",
   weightClass: "Super-Fliegengewicht",
@@ -13,6 +13,15 @@ export const profile = {
 };
 
 export const fights: Fight[] = [
+  {
+    id: 6,
+    opponent: "Oliwia Koziura",
+    date: "12.04.2026",
+    location: "Stanglwirt, Going am Wilden Kaiser",
+    result: "W",
+    isTitle: true,
+    title: "BDB German Super Fly — Titel verteidigt",
+  },
   {
     id: 1,
     opponent: "Nicole Purwins",

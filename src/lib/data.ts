@@ -73,8 +73,43 @@ export const fights: Fight[] = [
 
 export const galleryImages: GalleryImage[] = [
   {
+    src: "/images/gallery-stanglwirt-sieg-1.jpg",
+    alt: "Elisa Frey nach der Titelverteidigung am Stanglwirt, 12.04.2026",
+    span: "normal",
+  },
+  {
+    src: "/images/gallery-stanglwirt-team.jpg",
+    alt: "Elisa Frey mit Team und Unterstützern nach dem Titelkampf",
+    span: "normal",
+  },
+  {
+    src: "/images/gallery-stanglwirt-ecke.jpg",
+    alt: "Elisa Frey wird in der Ringecke vorbereitet",
+    span: "normal",
+  },
+  {
+    src: "/images/gallery-stanglwirt-action.jpg",
+    alt: "Kampfszene am Stanglwirt",
+    span: "normal",
+  },
+  {
+    src: "/images/gallery-stanglwirt-ring.jpg",
+    alt: "Elisa Frey im Ring am Stanglwirt",
+    span: "normal",
+  },
+  {
+    src: "/images/gallery-stanglwirt-sieg-2.jpg",
+    alt: "Siegermoment nach der BDB Titelverteidigung",
+    span: "normal",
+  },
+  {
     src: "/images/hero-belt.jpg",
     alt: "Elisa Frey mit BDB Meisterschaftsgürtel",
+    span: "tall",
+  },
+  {
+    src: "/images/gallery-stanglwirt-portrait.jpg",
+    alt: "Elisa Frey konzentriert vor dem Kampf",
     span: "tall",
   },
   {

@@ -110,7 +110,7 @@ body {
 .filmstrip-track {
   display: flex;
   width: max-content;
-  animation: filmstrip-scroll 30s linear infinite;
+  animation: filmstrip-scroll 75s linear infinite;
 }
 
 @media (hover: hover) {

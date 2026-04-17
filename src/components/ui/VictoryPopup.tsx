@@ -82,7 +82,7 @@ export default function VictoryPopup() {
 
           {/* Content */}
           <div
-            className="flex flex-col items-center gap-6 w-full max-w-md"
+            className="flex flex-col items-center gap-6 w-full max-w-3xl"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Image container with shake on stamp impact */}
@@ -139,10 +139,10 @@ export default function VictoryPopup() {
                   <Image
                     src="/images/victory-stanglwirt.jpg"
                     alt="Elisa Frey nach der Titelverteidigung am Stanglwirt, 12.04.2026"
-                    width={600}
-                    height={1067}
-                    className="max-h-[68vh] w-auto object-contain"
-                    sizes="(max-width: 768px) 90vw, 500px"
+                    width={1200}
+                    height={1000}
+                    className="max-h-[75vh] w-auto object-contain"
+                    sizes="(max-width: 768px) 95vw, 900px"
                     priority
                   />
                 </div>
@@ -165,7 +165,7 @@ export default function VictoryPopup() {
               {stampPhase && (
                 <div
                   className="absolute pointer-events-none"
-                  style={{ left: "50%", top: "68%", width: 0, height: 0 }}
+                  style={{ left: "48%", top: "42%", width: 0, height: 0 }}
                 >
                   {particles.map((p) => (
                     <motion.div
@@ -204,8 +204,8 @@ export default function VictoryPopup() {
               <motion.div
                 className="absolute pointer-events-none"
                 style={{
-                  left: "50%",
-                  top: "68%",
+                  left: "48%",
+                  top: "42%",
                   x: "-50%",
                   y: "-50%",
                   transformOrigin: "center center",

@@ -44,5 +44,8 @@ next-env.d.ts
 /Elisa_Videos/
 /Bilder Elisa/
 
+# sponsoring / outreach drafts (privat, nicht ins Repo)
+/sponsoring/
+
 # claude code
 .claude/

@@ -135,7 +135,7 @@ const jsonLd = {
         { "@type": "Person", name: "Oliwia Koziura" },
       ],
       description:
-        "BDB German Super Fly — Elisa Frey verteidigt ihren Titel am 12.04.2026 im Hotel Stanglwirt gegen Oliwia Koziura und gewinnt.",
+        "BDB German Super Fly — Elisa Frey verteidigt ihren Titel am 12.04.2026 im Hotel Stanglwirt gegen Oliwia Koziura und gewinnt durch TKO in Runde 3.",
     },
     {
       "@type": "WebSite",

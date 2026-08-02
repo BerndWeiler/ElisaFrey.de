@@ -5,7 +5,9 @@
 
 Jeder Punkt unten ist am Code oder an einer Messung belegt. Vermutungen sind als solche gekennzeichnet.
 
-> **Umsetzungsstand 02.08.2026:** Block A vollständig erledigt und live. Aus Block B sind **B1** (Sponsorenlogos) und **B4** (Assets) erledigt. Offen: B2, B3, B5 bis B10 sowie die Blöcke C und D.
+> **Umsetzungsstand 02.08.2026:** Block A vollständig erledigt. Aus Block B sind **B1** (Sponsorenlogos) und **B4** (Assets) erledigt. Offen: B2, B3, B5 bis B10 sowie die Blöcke C und D.
+>
+> **Achtung, noch nicht live.** Commit, Push und der GitHub-Actions-Build sind durch, der `deploy`-Branch trägt den neuen Stand. Hostinger liefert aber weiterhin den Stand vom 17.04.2026 aus (per `last-modified`-Header geprüft). Der letzte Schritt der Kette passiert offenbar nicht automatisch und muss im Hostinger-Panel angestoßen werden. Ein Push auf `main` allein bedeutet also nicht, dass Änderungen öffentlich sind.
 
 ---
 

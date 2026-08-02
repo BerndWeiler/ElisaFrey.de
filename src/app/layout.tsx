@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import { bebasNeue, inter } from "@/lib/fonts";
+import { profile } from "@/lib/data";
 import "./globals.css";
+
+// Kennzahlen kommen aus data.ts, damit Metadaten, Rich Results und die
+// sichtbare Seite nach einem Kampf nicht auseinanderlaufen.
+const bilanz = `${profile.record.wins}-${profile.record.losses}-${profile.record.draws}`;
+const kurzbeschreibung = `Unbesiegte Profi-Boxerin (${bilanz}, ${profile.koRate}% KO-Rate). BDB Deutsche Meisterin im ${profile.weightClass}.`;
+const beschreibung = `Elisa Frey, unbesiegte Profi-Boxerin (${bilanz}, ${profile.koRate}% KO-Rate). BDB Deutsche Meisterin im ${profile.weightClass}.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://elisafrey.com"),
@@ -8,8 +15,7 @@ export const metadata: Metadata = {
     canonical: "https://elisafrey.com",
   },
   title: "Elisa Frey | Unbesiegte Deutsche Meisterin im Profi-Boxen",
-  description:
-    "Elisa Frey – Unbesiegte Profi-Boxerin (6-0-0, 83% KO-Rate), BDB Deutsche Meisterin im Super-Fliegengewicht.",
+  description: beschreibung,
   keywords: [
     "Elisa Frey",
     "Boxen",
@@ -20,25 +26,23 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Elisa Frey | Unbesiegte Deutsche Meisterin",
-    description:
-      "Unbesiegte Profi-Boxerin (6-0-0, 83% KO-Rate), BDB Deutsche Meisterin im Super-Fliegengewicht.",
+    description: kurzbeschreibung,
     url: "https://elisafrey.com",
     type: "website",
     locale: "de_DE",
     images: [
       {
         url: "/images/hero-belt.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Elisa Frey – Unbesiegte Deutsche Meisterin im Profi-Boxen",
+        width: 1848,
+        height: 2768,
+        alt: "Elisa Frey, unbesiegte Deutsche Meisterin im Profi-Boxen",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Elisa Frey | Unbesiegte Deutsche Meisterin",
-    description:
-      "Unbesiegte Profi-Boxerin (6-0-0, 83% KO-Rate), BDB Deutsche Meisterin im Super-Fliegengewicht.",
+    description: kurzbeschreibung,
     images: ["/images/hero-belt.jpg"],
   },
 };
@@ -52,8 +56,7 @@ const jsonLd = {
       url: "https://elisafrey.com",
       image: "https://elisafrey.com/images/hero-belt.jpg",
       jobTitle: "Professionelle Boxerin",
-      description:
-        "Unbesiegte Profi-Boxerin (6-0-0, 83% KO-Rate), BDB Deutsche Meisterin im Super-Fliegengewicht.",
+      description: kurzbeschreibung,
       sameAs: [
         "https://www.instagram.com/eliisa.frey/",
         "https://boxrec.com/en/box-pro/1235889",

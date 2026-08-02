@@ -71,27 +71,51 @@ export default function Datenschutz() {
 
             <h3 className="text-foreground/90 text-sm font-medium mt-4 mb-1">Kontaktformular</h3>
             <p>
-              Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus
-              dem Formular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung
-              der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten
-              geben wir nicht ohne Ihre Einwilligung weiter. Die Verarbeitung dieser Daten erfolgt
-              auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO.
+              Wenn Sie uns über das Kontaktformular eine Anfrage senden, werden die von Ihnen
+              eingegebenen Angaben (Name, E-Mail-Adresse, Betreff und Nachricht) zum Zweck der
+              Bearbeitung Ihrer Anfrage und für den Fall von Anschlussfragen verarbeitet. Die
+              Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, bei nicht
+              vertragsbezogenen Anfragen auf Grundlage unseres berechtigten Interesses an der
+              Beantwortung nach Art. 6 Abs. 1 lit. f DSGVO.
+            </p>
+            <p className="mt-2">
+              Für die technische Zustellung setzen wir den Dienst FormSubmit ein. Beim Absenden
+              werden Ihre Formularangaben an dessen Server übertragen und von dort per E-Mail an
+              das für Anfragen zuständige Postfach zugestellt. Der Anbieter hat seinen Sitz in
+              den USA, es findet also eine Übermittlung in ein Drittland statt. Weitere
+              Informationen finden Sie unter{" "}
+              <a
+                href="https://formsubmit.co/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gold hover:text-gold-light transition-colors"
+              >
+                formsubmit.co
+              </a>
+              . Wenn Sie diese Übermittlung vermeiden möchten, können Sie uns stattdessen direkt
+              per E-Mail an die unter Punkt 2 genannte Adresse kontaktieren.
+            </p>
+            <p className="mt-2">
+              Über den beschriebenen Weg der Zustellung hinaus geben wir Ihre Angaben nicht an
+              Dritte weiter. Sie werden gelöscht, sobald sie für den Zweck der Bearbeitung nicht
+              mehr erforderlich sind und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.
             </p>
           </section>
 
           <section>
             <h2 className="text-foreground font-medium text-base mb-2">4. Hosting</h2>
             <p>
-              Diese Website wird bei Netlify (Netlify, Inc., 2325 3rd Street, Suite 296,
-              San Francisco, California 94107, USA) gehostet. Details entnehmen Sie der
-              Datenschutzerklärung von Netlify:{" "}
+              Diese Website wird bei Hostinger (Hostinger International Ltd., 61 Lordou Vironos
+              Street, 6023 Larnaca, Zypern) gehostet. Der Anbieter verarbeitet dabei die oben
+              genannten Server-Log-Dateien. Details entnehmen Sie der Datenschutzerklärung von
+              Hostinger:{" "}
               <a
-                href="https://www.netlify.com/privacy/"
+                href="https://www.hostinger.de/datenschutz"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gold hover:text-gold-light transition-colors"
               >
-                netlify.com/privacy
+                hostinger.de/datenschutz
               </a>
             </p>
           </section>

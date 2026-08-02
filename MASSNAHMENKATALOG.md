@@ -5,6 +5,8 @@
 
 Jeder Punkt unten ist am Code oder an einer Messung belegt. Vermutungen sind als solche gekennzeichnet.
 
+> **Umsetzungsstand 02.08.2026:** Block A ist vollständig erledigt und im Browser gegengeprüft (Commit siehe Git-Historie). Block B, C und D sind offen.
+
 ---
 
 ## Gesamtbild
@@ -19,7 +21,9 @@ Punkt 2 und 3 sind der eigentliche Hebel. Die Seite ist aktuell eine schöne Vis
 
 ---
 
-## A. Sofort: Fehler, die aktiv schaden
+## A. Sofort: Fehler, die aktiv schaden — ERLEDIGT am 02.08.2026
+
+Alle fünf Punkte sind umgesetzt. Was tatsächlich gemacht und wie es geprüft wurde, steht jeweils am Ende des Abschnitts unter „Umgesetzt".
 
 ### A1. Das Kontaktformular meldet Erfolg, obwohl die Nachricht verloren geht
 `src/components/sections/Contact.tsx:104-124`
@@ -32,12 +36,25 @@ Der `catch`-Block setzt `setSubmitted(true)`. Bei jedem Netzwerkfehler sieht der
 
 **Nebenbefund:** `_honey` und `_captcha` stehen im Markup, werden im JSON-Body aber nicht mitgeschickt. Der Spam-Schutz ist damit wirkungslos.
 
+**Umgesetzt:** Statuswerte `idle / sending / success / error` statt eines einzelnen `submitted`-Schalters. Bei Fehler bleibt das ausgefüllte Formular stehen und darüber erscheint eine Meldung mit klickbarer E-Mail-Adresse als Ausweichweg. Der Antwortkörper wird jetzt ausgewertet, nicht nur der HTTP-Status. Der Honeypot wird mitgeschickt. Während des Sendens ist der Button gesperrt und beschriftet sich um. Erfolgs- und Fehlermeldung sind als `role="status"` beziehungsweise `role="alert"` ausgezeichnet und bekommen den Fokus, damit Screenreader sie ansagen.
+
+Im Browser gegen vier Fälle geprüft, alle mit dem erwarteten Ergebnis:
+
+| Fall | Verhalten vorher | Verhalten jetzt |
+|---|---|---|
+| Versand erfolgreich | Bestätigung | Bestätigung |
+| HTTP 500 | gar keine Reaktion | Fehlermeldung, Eingaben bleiben erhalten |
+| Netzwerkabbruch | **falsche Erfolgsmeldung** | Fehlermeldung, Eingaben bleiben erhalten |
+| HTTP 200 mit `success: false` | **falsche Erfolgsmeldung** | Fehlermeldung, Eingaben bleiben erhalten |
+
 ### A2. Google zeigt eine falsche Kennzahl
 `src/app/layout.tsx:12, 24, 41, 56`
 
 An vier Stellen steht wörtlich „6-0-0, 83% KO-Rate". Die Seite selbst zeigt seit dem Update vom 17.04.2026 „100% KO-Rate". Betroffen sind Meta-Description, OpenGraph, Twitter-Card und das Person-Schema. Das ist genau der Text, den Google im Suchergebnis und WhatsApp in der Link-Vorschau ausspielt.
 
 **Fix:** Alle vier Stellen aus `profile` in `data.ts` interpolieren statt sie hart zu duplizieren. Dann passiert das beim nächsten Kampf nicht wieder. Aufwand: klein.
+
+**Umgesetzt:** `layout.tsx` importiert jetzt `profile` aus `data.ts` und baut daraus zwei Textbausteine, die an allen vier Stellen verwendet werden. Nach dem nächsten Kampf reicht eine Änderung in `data.ts`. Im gebauten Output verifiziert: „83% KO-Rate" kommt nicht mehr vor, alle Metadaten zeigen „6-0-0, 100% KO-Rate". Bei der Gelegenheit mitgenommen: die Gedankenstriche in denselben Zeilen (Stilregel) und die falsch deklarierten Maße des Vorschaubilds (angegeben waren 1200×630, tatsächlich 1848×2768). **Offen bleibt**, dass dieses Bild im Hochformat ist und für Social-Vorschauen ein eigenes Querformat-Motiv gebraucht wird, siehe Block D.
 
 ### A3. Das Startbild schrumpft und legt schwarze Ränder frei
 `src/components/sections/Hero.tsx:37-40`
@@ -53,6 +70,8 @@ Der Effekt heißt im Projekt „Ken Burns Zoom", ein Ken-Burns-Effekt zoomt aber
 
 **Fix:** Zielwert auf `1.0` oder höher setzen, zum Beispiel `1.15 → 1.0` für ein langsames Heranfahren. Aufwand: klein, eine Zeile.
 
+**Umgesetzt:** Animation läuft jetzt von `1.0` auf `1.08`, also ein langsames Heranfahren statt eines Herauszoomens unter die Containergröße. Nachgemessen nach Ablauf der acht Sekunden: Das Bild überragt den Viewport in beiden Ansichten (Desktop 1555×972 bei 1440×900, Mobile 421×912 bei 390×844), kein Rand mehr sichtbar. Im Code steht jetzt ein Kommentar, dass der Zielwert nie unter 1,0 fallen darf.
+
 ### A4. Die Datenschutzerklärung beschreibt die falsche Infrastruktur
 `src/app/datenschutz/page.tsx:72-97`
 
@@ -67,6 +86,10 @@ Dazu passend: Am Formular selbst fehlt jeder Datenschutzhinweis und jeder Link z
 
 *Hinweis: Das ist keine Rechtsberatung, sondern der Abgleich zwischen dem, was der Code tut, und dem, was der Text behauptet. Die Formulierungen gehören von jemandem geprüft, der das rechtlich verantworten kann.*
 
+**Umgesetzt:** Abschnitt 4 nennt jetzt Hostinger mit Anschrift und verlinkt deren Datenschutzerklärung. Der Abschnitt zum Kontaktformular beschreibt die tatsächlichen Datenkategorien, beide Rechtsgrundlagen, den Einsatz von FormSubmit, die Übermittlung in die USA und den Ausweichweg per direkter E-Mail. Der falsche Satz zur Nichtweitergabe ist ersetzt durch eine Formulierung, die den tatsächlichen Zustellweg beschreibt, plus Löschfrist. Am Formular selbst steht jetzt unter dem Button ein Hinweis mit Verweis auf die Datenschutzerklärung. Im gebauten Output verifiziert: null Treffer für „Netlify", je ein Treffer für „Hostinger" und „FormSubmit", der alte Weitergabe-Satz ist verschwunden.
+
+**Weiterhin zu klären, nicht durch Code lösbar:** Als Verantwortlicher steht Bernd Weiler beziehungsweise Valueate im Impressum und in der Datenschutzerklärung, die Anfragen laufen aber an das Postfach des Trainers. Wer die Seite rechtlich betreibt und wer Empfänger der Formulardaten ist, sollte einmal sauber festgelegt und dann in beiden Texten konsistent abgebildet werden.
+
 ### A5. Das Siegerbild-Popup blockiert jeden einzelnen Besuch
 `src/components/ui/VictoryPopup.tsx:27, 31`
 
@@ -75,6 +98,12 @@ Dazu passend: Am Formular selbst fehlt jeder Datenschutzhinweis und jeder Link z
 Auf Mobile kommt ein Darstellungsfehler dazu: Der Stempel ist mit fester Pixelgröße gesetzt und nimmt dort **79 Prozent der Bildbreite und 72 Prozent der Bildfläche** ein. Elisa ist auf dem Siegerbild kaum noch zu erkennen.
 
 **Fix:** Anzeige einmalig machen (`localStorage`-Merker mit dem Kampfdatum als Schlüssel) plus Ablaufdatum. Stempelgröße relativ zur Bildbreite skalieren. Den Sieg dauerhaft als Banner oder in der Kampfliste zeigen statt als Sperrbildschirm. Aufwand: klein.
+
+**Umgesetzt, abweichend vom Vorschlag:** Auf ausdrückliche Entscheidung wurde das Popup **vollständig entfernt** statt nur einmalig gemacht, weil der Kampf vom 12.04.2026 nicht mehr aktuell ist. Die Einbindung in `page.tsx` ist raus, die Komponente `VictoryPopup.tsx` bleibt mit einem erklärenden Kommentar liegen und kann nach einem neuen Sieg wieder eingehängt werden. Die beiden bekannten Schwächen (jedes Mal sichtbar, fester Stempel) sind im Kommentar vermerkt, damit sie beim Wiedereinsatz nicht erneut auftreten.
+
+Angenehmer Nebeneffekt: `victory-stanglwirt.jpg` mit 3,83 MB wurde per `priority` vorgeladen und war damit das schwerste Element beim Seitenstart. Dieser Vorabruf ist jetzt weg. Die Datei muss aber im Projekt bleiben, weil das JSON-LD sie als Bild für den Titelkampf referenziert. Google holt sie beim Crawlen, Besucher laden sie nicht mehr mit. Verkleinern lohnt sich trotzdem, siehe B4.
+
+Im Browser verifiziert: kein Stempel und kein Popup-Bild mehr im Dokument, `body`-Scrollsperre nicht mehr gesetzt, Seite ab dem ersten Moment scrollbar.
 
 ---
 
@@ -129,7 +158,7 @@ Weil `next.config.ts` wegen des statischen Exports `images.unoptimized: true` se
 
 **Fix:**
 - Videos einmalig auf 1080×1920 reencodieren, crf 23, Tonspur entfernen (sie laufen ohnehin stumm), `-movflags +faststart`. Erwartung: unter 15 MB gesamt statt 143 MB.
-- `victory-stanglwirt.jpg` auf 1600 px lange Kante als WebP, gemessen rund 313 KB statt 3,83 MB.
+- `victory-stanglwirt.jpg` auf 1600 px lange Kante als WebP, gemessen rund 313 KB statt 3,83 MB. Es wird seit dem Entfernen des Popups nicht mehr von Besuchern geladen, aber vom JSON-LD als Bild des Titelkampfs referenziert und daher von Google abgerufen.
 - Batch-Lauf über `public/images/`: lange Kante auf 1600 px, WebP mit Qualität 82.
 - Vier unreferenzierte Bilder löschen (`gallery-team-emotion.jpg`, `gallery-studio-4.jpg`, `gallery-studio-5.jpg`, `Savethedate.jpeg`, zusammen 1,6 MB) sowie `public/__forms.html`, eine verwaiste Netlify-Datei, die öffentlich erreichbar und indexierbar ist.
 
@@ -252,6 +281,7 @@ Die Galeriebilder tragen das Wasserzeichen „© marc_rene_lochmann". Weder im I
 
 ### Technik
 - **`npm run lint` schlägt fehl.** Ein Fehler in `VideoCard.tsx:25`, Regel `react-hooks/set-state-in-effect`. Klein.
+- **Die Unterstreichung der Navigationslinks animiert `width`** (`globals.css:168-182`). Breitenänderungen zwingen den Browser zum Neuberechnen des Layouts. Sauberer über `transform: scaleX()` mit `transform-origin`. Klein.
 - **Die Scroll-Sperre ist dreifach implementiert**, in `Navbar.tsx:25-31` ohne Aufräumfunktion. Wenn Popup und Menü zusammentreffen, kann die Seite gesperrt bleiben. Klein.
 - **Der Deploy-Workflow hat keinerlei Größenprüfung.** Nach der Bildoptimierung wäre ein Schwellwert sinnvoll, damit nicht unbemerkt wieder 4K-Videos ins Repository wandern. Klein.
 - **Popup und Lightbox haben keine Dialog-Semantik** (`role="dialog"`, `aria-modal`, Fokusverwaltung). Mittel.
@@ -273,7 +303,7 @@ Damit die Liste nicht den Eindruck erweckt, die Seite sei schlecht:
 
 ## Vorschlag zur Reihenfolge
 
-**Schritt 1, ein Abend:** A1 bis A5. Das sind fünf kleine bis mittlere Eingriffe, die aktiven Schaden beenden. Danach Re-Indexierung in der Search Console beantragen, die ohnehin noch offen ist.
+**Schritt 1: erledigt am 02.08.2026.** A1 bis A5 sind umgesetzt und im Browser gegengeprüft. **Offen und wichtig:** Re-Indexierung in der Search Console beantragen, sobald der Hostinger-Deploy durch ist. Die Meta-Description hat sich geändert, Google zeigt sonst weiter die alte Fassung mit der falschen KO-Rate.
 
 **Schritt 2, ein Abend:** B1 (Sponsorenlogos) und B4 (Assets). Beide haben sofort sichtbare Wirkung, das eine gestalterisch, das andere bei der Ladezeit auf dem Handy.
 

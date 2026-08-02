@@ -1,14 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import SectionHeading from "@/components/ui/SectionHeading";
 import GlassCard from "@/components/ui/GlassCard";
 import Button from "@/components/ui/Button";
 import FadeIn from "@/components/animations/FadeIn";
 import { profile } from "@/lib/data";
 
+const EMPFAENGER = "bjoern.schulz.coach@gmx.de";
+
+type Status = "idle" | "sending" | "success" | "error";
+
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
+  const meldungRef = useRef<HTMLDivElement>(null);
+
+  // Fokus auf die Rueckmeldung setzen, damit Screenreader sie ansagen.
+  useEffect(() => {
+    if (status === "success" || status === "error") {
+      meldungRef.current?.focus();
+    }
+  }, [status]);
 
   return (
     <section id="kontakt" className="relative py-20 md:py-32 px-6">
@@ -24,8 +37,8 @@ export default function Contact() {
                   Let&apos;s Connect
                 </h3>
                 <p className="text-muted leading-relaxed">
-                  Ob Medienanfragen, Sponsoring-Möglichkeiten oder Kooperationen –
-                  ich freue mich über jede Nachricht.
+                  Ob Medienanfragen, Sponsoring-Möglichkeiten oder Kooperationen.
+                  Ich freue mich über jede Nachricht.
                 </p>
               </div>
 
@@ -92,8 +105,13 @@ export default function Contact() {
           {/* Contact Form */}
           <FadeIn direction="right">
             <GlassCard className="p-8">
-              {submitted ? (
-                <div className="text-center py-12">
+              {status === "success" ? (
+                <div
+                  ref={meldungRef}
+                  tabIndex={-1}
+                  role="status"
+                  className="text-center py-12 focus:outline-none"
+                >
                   <div className="text-gold text-4xl mb-4">&#10003;</div>
                   <h3 className="font-display text-2xl tracking-wide uppercase mb-2">
                     Nachricht gesendet
@@ -104,10 +122,10 @@ export default function Contact() {
                 <form
                   onSubmit={async (e) => {
                     e.preventDefault();
-                    const form = e.currentTarget;
-                    const formData = new FormData(form);
+                    const formData = new FormData(e.currentTarget);
+                    setStatus("sending");
                     try {
-                      const res = await fetch("https://formsubmit.co/ajax/bjoern.schulz.coach@gmx.de", {
+                      const res = await fetch(`https://formsubmit.co/ajax/${EMPFAENGER}`, {
                         method: "POST",
                         headers: { "Content-Type": "application/json", Accept: "application/json" },
                         body: JSON.stringify({
@@ -115,11 +133,19 @@ export default function Contact() {
                           email: formData.get("email"),
                           _subject: formData.get("subject"),
                           message: formData.get("message"),
+                          _captcha: "false",
+                          // Honeypot: von Menschen nie ausgefuellt, von Bots oft schon.
+                          _honey: formData.get("_honey"),
                         }),
                       });
-                      if (res.ok) setSubmitted(true);
+                      // FormSubmit antwortet auch bei Fehlern mit HTTP 200 und
+                      // meldet den echten Status erst im Antwortkoerper.
+                      const daten = await res.json().catch(() => null);
+                      const erfolg =
+                        res.ok && (daten === null || String(daten.success) !== "false");
+                      setStatus(erfolg ? "success" : "error");
                     } catch {
-                      setSubmitted(true);
+                      setStatus("error");
                     }
                   }}
                   className="space-y-6"
@@ -182,9 +208,50 @@ export default function Contact() {
                     />
                   </div>
 
-                  <Button type="submit" variant="primary" className="w-full">
-                    Nachricht senden
+                  {status === "error" && (
+                    <div
+                      ref={meldungRef}
+                      tabIndex={-1}
+                      role="alert"
+                      className="rounded-xl border border-gold/40 bg-gold/5 px-4 py-3 text-sm leading-relaxed focus:outline-none"
+                    >
+                      <span className="text-foreground font-medium">
+                        Die Nachricht konnte nicht gesendet werden.
+                      </span>{" "}
+                      <span className="text-foreground/70">
+                        Bitte versuchen Sie es noch einmal oder schreiben Sie direkt an{" "}
+                        <a
+                          href={`mailto:${EMPFAENGER}`}
+                          className="text-gold hover:text-gold-light transition-colors"
+                        >
+                          {EMPFAENGER}
+                        </a>
+                        .
+                      </span>
+                    </div>
+                  )}
+
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    className="w-full"
+                    disabled={status === "sending"}
+                  >
+                    {status === "sending" ? "Wird gesendet ..." : "Nachricht senden"}
                   </Button>
+
+                  <p className="text-xs text-foreground/50 leading-relaxed">
+                    Ihre Angaben werden ausschließlich zur Bearbeitung der Anfrage
+                    verwendet. Für den Versand wird der Dienst FormSubmit eingesetzt.
+                    Weitere Hinweise in der{" "}
+                    <Link
+                      href="/datenschutz"
+                      className="text-foreground/70 underline underline-offset-2 hover:text-gold transition-colors"
+                    >
+                      Datenschutzerklärung
+                    </Link>
+                    .
+                  </p>
                 </form>
               )}
             </GlassCard>

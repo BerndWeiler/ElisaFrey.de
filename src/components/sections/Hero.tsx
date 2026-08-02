@@ -33,10 +33,12 @@ export default function Hero() {
 
   return (
     <section className="relative h-screen w-full overflow-hidden flex items-end">
-      {/* Background Image — slow cinematic zoom */}
+      {/* Hintergrundbild: langsames Heranfahren (Ken Burns).
+          Der Zielwert muss immer >= 1 bleiben, sonst schrumpft das Bild unter
+          den Container und legt schwarze Raender frei. */}
       <motion.div
-        initial={{ scale: 1.05 }}
-        animate={{ scale: 0.9 }}
+        initial={{ scale: 1 }}
+        animate={{ scale: 1.08 }}
         transition={{ duration: 8, ease: "easeOut" }}
         className="absolute inset-0"
       >

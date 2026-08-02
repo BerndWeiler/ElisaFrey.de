@@ -5,11 +5,11 @@
 
 Jeder Punkt unten ist am Code oder an einer Messung belegt. Vermutungen sind als solche gekennzeichnet.
 
-> **Umsetzungsstand 02.08.2026:** Block A vollständig erledigt. Aus Block B sind **B1** (Sponsorenlogos) und **B4** (Assets) erledigt. Neu dazugekommen und ebenfalls erledigt: **A6** (Impressum und Datenschutz waren nicht erreichbar). Offen: B2, B3, B5 bis B10 sowie die Blöcke C und D.
+> **Umsetzungsstand 02.08.2026:** Erledigt sind **A1 bis A8** und aus Block B **B1** (Sponsorenlogos), **B3** (geprüft und bewusst geschlossen), **B4** (Assets), **B6 teilweise** (Pflichtlinks im Footer), **B8/B10 teilweise** (Anrede und Anglizismen im Kontaktformular). Offen: B2, B5, B7, Reste von B6/B8/B9/B10 sowie die Blöcke C und D. Entscheidungsbedürftig: **A8** (Formularversand in die USA).
 >
-> **Live seit 02.08.2026, 12:55 Uhr.** Gegen die öffentliche Seite nachgemessen: `last-modified: Sun, 02 Aug 2026 12:55:02 GMT`, Meta-Beschreibung zeigt 100 % KO-Rate, das Popup ist weg, die vier Sponsoren-PNGs liefern HTTP 200, die Videos laufen live in 1080×1920, die Startseite ist nach 363 ms geladen.
+> **Live-Stand:** Alles bis einschließlich **A6** ist öffentlich (geprüft: `/impressum` liefert HTTP 200, Meta-Beschreibung zeigt 100 % KO-Rate, Popup weg, Sponsoren-PNGs laden, Videos in 1080×1920, Startseite nach 363 ms geladen). **A7 ist gebaut und im `deploy`-Branch, aber noch nicht live.**
 >
-> **Merksatz für künftige Änderungen:** Push auf `main` bedeutet nicht automatisch live. Nach dem GitHub-Actions-Lauf muss Hostinger den `deploy`-Branch ziehen. Kontrolle: `curl -sI https://elisafrey.com/ | grep last-modified`.
+> **Merksatz für künftige Änderungen:** Push auf `main` bedeutet nicht automatisch live, und der Zug läuft auch nicht verzögert von selbst. Belegt am 02.08.2026: `deploy`-Branch um 13:39 aktualisiert, um 15:54 lieferte Hostinger weiterhin den Stand von 13:05. Nach jedem Actions-Lauf muss der Branch im hPanel gezogen werden. Kontrolle: `curl -sI https://elisafrey.com/ | grep last-modified`.
 
 ---
 
@@ -217,12 +217,26 @@ Nachgemessen bei 390×844: „All Wins by KO" endet bei y=757, „Scroll" beginn
 
 **Fix:** Scroll-Indikator auf kleinen Viewports ausblenden oder den unteren Innenabstand des Inhaltsblocks erhöhen. Aufwand: klein.
 
-### B3. Das Startbild ist zu klein für große Bildschirme
+### B3. Das Startbild ist zu klein für große Bildschirme — GEPRÜFT UND BEWUSST GESCHLOSSEN
 `public/images/hero-ring.jpg`
 
-Die Datei ist 900×1600 Pixel bei 56 KB. Auf einem 1440er Bildschirm wird sie über die volle Breite gezogen, auf einem 4K-Monitor noch weiter. Das Bild ist sichtbar weich. Der Rest der Bibliothek hat das umgekehrte Problem (siehe B4), dieses eine Bild ist unterdimensioniert.
+Die Datei ist 900×1600 Pixel bei 56 KB. Auf einem 1440er Bildschirm wird sie über die volle Breite gezogen, auf einem 4K-Monitor noch weiter. Der Rest der Bibliothek hat das umgekehrte Problem (siehe B4), dieses eine Bild ist unterdimensioniert.
 
-**Fix:** Aus dem Original in mindestens 2400 px Breite neu exportieren. Aufwand: klein.
+**Nachgemessen am 02.08.2026, der ursprüngliche Befund war zu pauschal.** Ob es auffällt, hängt vom Gerät ab:
+
+| Gerät | benötigte Breite | Faktor | Befund |
+|---|---|---|---|
+| Handy (390 px, 2×) | 780 px | 0,9× | einwandfrei, Quelle reicht aus |
+| Monitor 1440 px, 1× | 1526 px | 1,7× | unauffällig |
+| Monitor 1440 px, 2× (Retina) | 3052 px | 3,4× | sichtbar weich |
+
+Auf einem Retina-Screenshot der Live-Seite verlieren Haare und Bandage ihre Struktur. Auf allen anderen Geräten fällt nichts auf, weil 87 Prozent der Bildfläche nahezu schwarz sind und das Motiv weich ausgeleuchtet ist. Ein Vergleich der Gesichtspartie bei 1,7× gegen 3,4× zeigt bei der kleineren Stufe keinen erkennbaren Unterschied zum Original.
+
+Ein besseres Original gibt es nicht. `Bilder Elisa/Start_bild.jpeg` ist byte-identisch mit der ausgelieferten Datei (900×1600, 53.947 Byte), das Bild kam bereits komprimiert über WhatsApp.
+
+**Entscheidung vom 02.08.2026: bleibt unverändert.** Geprüft und verworfen wurden: Motivtausch gegen eines von zehn Bildern aus demselben Shooting in 1848×2768 (das aktuelle Motiv ist das stärkste der Seite, der Tausch wäre ein Verlust) und ein Abschwächen des Ken-Burns-Zooms von 108 auf 103 Prozent (die Bewegung ist Teil der Bildwirkung).
+
+**Erledigt sich beim nächsten Shooting von selbst**, wenn das Hochformat direkt vom Fotografen kommt statt über WhatsApp. Bis dahin kein Handlungsbedarf.
 
 ### B4. 155 MB Assets, davon 143 MB Video in 4K
 `public/videos/`, `public/images/`

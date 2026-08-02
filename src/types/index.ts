@@ -26,7 +26,10 @@ export interface Video {
 export interface Sponsor {
   name: string;
   logo: string;
+  /**
+   * Logos werden freigestellt (transparenter Hintergrund) erwartet. Die
+   * Darstellung vereinheitlicht sie per CSS zur hellen Silhouette und zeigt
+   * die Markenfarben erst im aktiven Zustand, siehe .sponsor-logo in globals.css.
+   */
   url: string;
-  /** Logo is already light/suited for dark backgrounds — skip invert filter */
-  light?: boolean;
 }

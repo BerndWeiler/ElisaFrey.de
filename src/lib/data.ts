@@ -170,12 +170,12 @@ export const sponsors: Sponsor[] = [
   },
   {
     name: "Goodbean",
-    logo: "/images/sponsors/goodbean.webp",
+    logo: "/images/sponsors/goodbean.png",
     url: "https://goodbean.coffee/",
   },
   {
     name: "Poolcultur",
-    logo: "/images/sponsors/poolcultur.jpg",
+    logo: "/images/sponsors/poolcultur.png",
     url: "https://www.poolcultur.de/",
   },
   {

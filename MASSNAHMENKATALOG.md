@@ -5,7 +5,7 @@
 
 Jeder Punkt unten ist am Code oder an einer Messung belegt. Vermutungen sind als solche gekennzeichnet.
 
-> **Umsetzungsstand 02.08.2026:** Block A ist vollständig erledigt und im Browser gegengeprüft (Commit siehe Git-Historie). Block B, C und D sind offen.
+> **Umsetzungsstand 02.08.2026:** Block A vollständig erledigt und live. Aus Block B sind **B1** (Sponsorenlogos) und **B4** (Assets) erledigt. Offen: B2, B3, B5 bis B10 sowie die Blöcke C und D.
 
 ---
 
@@ -127,6 +127,22 @@ Zusätzlich entfernt `grayscale(1)` alle Markenfarben, und `opacity-40` drückt 
 
 **Fix:** Filter und Blend-Mode entfernen. Pro Sponsor eine freigestellte Logovariante hinterlegen und auf eine helle Trägerfläche legen, so wie es die Projekt-CLAUDE.md ohnehin beschreibt. Grunddeckkraft auf mindestens 70 Prozent. `poolcultur.jpg` beim Sponsor als PNG oder SVG anfordern, die aktuelle Datei ist 750 KB groß im Druckfarbraum. Aufwand: mittel.
 
+**Umgesetzt am 02.08.2026, mit einem Zwei-Zustands-Konzept:**
+
+Vorarbeit an den Dateien: Alle vier Logos sind jetzt freigestellt (weißer Hintergrund per Randfüllung entfernt, wodurch weiße Flächen innerhalb des Logos erhalten bleiben), in sRGB konvertiert, auf 600 px begrenzt und als PNG mit Transparenz abgelegt. Damit ist die Darstellung nicht mehr vom Zufall des gelieferten Dateiformats abhängig. Zusammen 284 KB statt 1024 KB. Die Originale liegen unter `Bilder Elisa/sponsoren-original/`.
+
+Darstellung: Im Ruhezustand erscheinen alle Logos als einheitlich helle Silhouette bei 70 Prozent Deckkraft, was die Reihe ruhig hält. Im aktiven Zustand blendet eine helle Trägerfläche ein und das Logo wechselt in seine echten Markenfarben. Die Fläche ist notwendig, nicht dekorativ: Gemessen sind Goodbean (`#141313`) und Valueate (`#483D36`) so dunkel, dass sie auf dem schwarzen Hintergrund in Originalfarbe verschwinden würden.
+
+Auslöser des aktiven Zustands, getrennt nach Eingabeart:
+- **Mit Mauszeiger** (`@media (hover: hover)`): beim Darüberfahren, zusätzlich bei Tastaturfokus. Ohne Verzögerung, sonst fühlt es sich träge an.
+- **Auf Touch-Geräten** (`@media (hover: none)`): sobald die Reihe ins Bild scrollt, versetzt um jeweils 160 ms, danach bleiben die Logos farbig. Ein Antippen wäre der falsche Auslöser, weil die Logos Links zu den Sponsorenseiten sind.
+
+Die Trennung über die Media-Query verhindert außerdem den klassischen Fehler, dass ein Hover-Zustand auf Touch-Geräten nach dem Antippen kleben bleibt.
+
+Im Browser gegengeprüft: Ruhezustand einheitlich bei allen vier; Hover färbt genau ein Logo; Tastaturfokus löst denselben Zustand samt sichtbarem Fokusring aus; Verzögerung am Desktop 0 s gegenüber 0 / 0,16 / 0,32 / 0,48 s auf Touch; nach 250 ms Hover ist die Trägerfläche bereits zu 85 Prozent da.
+
+Das ungenutzte Feld `light?: boolean` im Sponsor-Typ ist entfernt, es wird durch diese Lösung überflüssig.
+
 ### B2. Auf dem Handy überlappen sich Bilanz und Scroll-Hinweis
 `src/components/sections/Hero.tsx:219-235`
 
@@ -163,6 +179,26 @@ Weil `next.config.ts` wegen des statischen Exports `images.unoptimized: true` se
 - Vier unreferenzierte Bilder löschen (`gallery-team-emotion.jpg`, `gallery-studio-4.jpg`, `gallery-studio-5.jpg`, `Savethedate.jpeg`, zusammen 1,6 MB) sowie `public/__forms.html`, eine verwaiste Netlify-Datei, die öffentlich erreichbar und indexierbar ist.
 
 Aufwand: mittel, ffmpeg ist auf dem Rechner vorhanden.
+
+**Umgesetzt am 02.08.2026. Das Ausgangsverzeichnis für den Server ist von 155 MB auf 17 MB geschrumpft.**
+
+Videos auf 1080×1920 reencodiert, crf 23, Tonspur entfernt (sie laufen ohnehin stumm), `faststart` gesetzt:
+
+| Datei | vorher | jetzt | Bitrate vorher | Bitrate jetzt |
+|---|---|---|---|---|
+| seilspringen.mp4 | 85,6 MB | 5,0 MB | 21,7 Mbit/s | 1,21 Mbit/s |
+| schattenboxen.mp4 | 43,9 MB | 3,0 MB | 20,2 Mbit/s | 1,18 Mbit/s |
+| bandage.mp4 | 17,3 MB | 2,0 MB | 10,5 Mbit/s | 0,76 Mbit/s |
+
+Bilder: Galerie- und Inhaltsbilder auf 1600 px lange Kante, JPEG Qualität 82. `victory-stanglwirt.jpg` von 3,83 MB auf 419 KB, also 89 Prozent weniger. Die Video-Vorschaubilder lagen in 2160×3840 vor und sind jetzt 720×1280.
+
+Bewusst **kein WebP**: Da `images.unoptimized` wegen des statischen Exports gesetzt ist, gäbe es kein automatisches Format-Fallback für ältere Browser. Der Unterschied zu gut komprimiertem JPEG ist bei diesen Motiven gering, das Risiko unnötig.
+
+Sieben Stanglwirt-Bilder wurden bewusst **nicht** neu komprimiert und stehen weiter im Original. Sie waren bereits optimiert, die Neukomprimierung hätte nur 5 bis 6 Prozent gebracht und dafür eine zweite JPEG-Generation gekostet. Bei einer Seite, deren stärkstes Argument die Bildqualität ist, lohnt dieser Tausch nicht.
+
+Vier unreferenzierte Bilder und die verwaiste Netlify-Datei `public/__forms.html` sind entfernt. Alle Originale liegen unter `Bilder Elisa/website-original/` und `Elisa_Videos/original-4k/`, beide Ordner sind von Git ausgeschlossen.
+
+Im Browser geprüft: Die Videos spielen nach der Neukodierung weiterhin automatisch, gemessen 1080×1920.
 
 ### B5. Die Galerie ist per Tastatur nicht bedienbar
 `src/components/ui/FilmStrip.tsx:20-35`
@@ -263,7 +299,7 @@ Die Galeriebilder tragen das Wasserzeichen „© marc_rene_lochmann". Weder im I
 
 ### Struktur und Auszeichnung
 - **Die Überschrift der Seite lautet für Suchmaschinen „ELISAFREY"** (ohne Leerzeichen). `TextReveal` setzt jeden Buchstaben einzeln, der Zeilenumbruch dazwischen erzeugt keinen Wortabstand im Textinhalt. Gemessen in beiden Ansichten. Fix: `aria-label="Elisa Frey"` am `<h1>`. Klein.
-- **Alle Kampfkarten stehen doppelt im DOM.** Desktop- und Mobile-Variante werden beide gerendert und nur per CSS ein-/ausgeblendet. Gemessen: 9 Überschriften für 6 Kämpfe, 3 davon doppelt. Screenreader lesen alles zweimal. Klein bis mittel.
+- **Kampfkarten und Videos stehen doppelt im DOM.** Desktop- und Mobile-Variante werden beide gerendert und nur per CSS ein- und ausgeblendet (`Fights.tsx:47,59` und `Videos.tsx:15,26`). Gemessen: 9 Überschriften für 6 Kämpfe, und sechs `<video>`-Elemente für drei Videos. Screenreader lesen alles doppelt. Bei den Videos entschärft das Lazy-Loading die Folgen, geladen wurden in der Messung nur zwei der sechs. Klein bis mittel.
 - **Vier von sechs Kämpfen fehlen im JSON-LD.** `layout.tsx:68-139` enthält nur die beiden Titelkämpfe. Mittel.
 - **Das OpenGraph-Bild ist im Hochformat.** `hero-belt.jpg` ist 1848×2768, deklariert werden 1200×630. Facebook, LinkedIn und WhatsApp schneiden es unkontrolliert zu. Fix: dediziertes Vorschaubild in 1200×630. Klein.
 - **`sitemap.xml` hat kein `lastmod`** und wurde seit dem Kampf-Update nicht angefasst. Klein.
@@ -305,9 +341,9 @@ Damit die Liste nicht den Eindruck erweckt, die Seite sei schlecht:
 
 **Schritt 1: erledigt am 02.08.2026.** A1 bis A5 sind umgesetzt und im Browser gegengeprüft. **Offen und wichtig:** Re-Indexierung in der Search Console beantragen, sobald der Hostinger-Deploy durch ist. Die Meta-Description hat sich geändert, Google zeigt sonst weiter die alte Fassung mit der falschen KO-Rate.
 
-**Schritt 2, ein Abend:** B1 (Sponsorenlogos) und B4 (Assets). Beide haben sofort sichtbare Wirkung, das eine gestalterisch, das andere bei der Ladezeit auf dem Handy.
+**Schritt 2: erledigt am 02.08.2026.** B1 (Sponsorenlogos) und B4 (Assets) sind umgesetzt. Das Ausgangsverzeichnis für den Server ist von 155 MB auf 17 MB geschrumpft.
 
-**Schritt 3, verteilt:** restliche B-Punkte. Viele davon sind Einzeiler.
+**Schritt 3, verteilt:** restliche B-Punkte (B2, B3, B5 bis B10). Viele davon sind Einzeiler. B3 ist der einzige, der neues Material braucht: Das Startbild muss aus dem Original in höherer Auflösung neu exportiert werden.
 
 **Schritt 4, mit Elisa gemeinsam:** Block C. Das ist Textarbeit und braucht ihre Zuarbeit, hat aber den größten Effekt auf das eigentliche Ziel.
 

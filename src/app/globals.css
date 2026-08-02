@@ -160,6 +160,58 @@ body {
   animation: breathe-zoom 6s ease-in-out infinite;
 }
 
+/* Sponsorenlogos
+   Ruhezustand: alle Logos einheitlich als helle Silhouette, damit die Reihe
+   ruhig wirkt und unabhaengig von der Originalfarbe jedes Logos lesbar bleibt.
+   Aktiver Zustand: die Marke tritt in ihren echten Farben auf einer hellen
+   Flaeche hervor. Die Flaeche ist noetig, weil zwei der Logos im Original zu
+   dunkel fuer den schwarzen Hintergrund sind. */
+.sponsor-logo {
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+  transition: filter 0.45s ease, opacity 0.45s ease;
+}
+
+.sponsor-plate {
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+/* Geraete mit echtem Mauszeiger: Auslöser ist das Darueberfahren. */
+@media (hover: hover) {
+  .sponsor-link:hover .sponsor-logo,
+  .sponsor-link:focus-visible .sponsor-logo {
+    filter: none;
+    opacity: 1;
+  }
+
+  .sponsor-link:hover .sponsor-plate,
+  .sponsor-link:focus-visible .sponsor-plate {
+    opacity: 1;
+  }
+}
+
+/* Touch-Geraete kennen kein Hover. Dort uebernimmt der Blick die Rolle des
+   Zeigers: Die Logos faerben sich ein, sobald die Reihe ins Bild scrollt,
+   leicht versetzt nacheinander. Der Versatz gilt bewusst NUR hier. Am Zeiger
+   muss die Reaktion sofort kommen, sonst fuehlt sich das Darueberfahren
+   traege an. */
+@media (hover: none) {
+  .sponsor-logo,
+  .sponsor-plate {
+    transition-delay: var(--einfaerb-versatz, 0ms);
+  }
+
+  .sponsor-link[data-sichtbar="true"] .sponsor-logo {
+    filter: none;
+    opacity: 1;
+  }
+
+  .sponsor-link[data-sichtbar="true"] .sponsor-plate {
+    opacity: 1;
+  }
+}
+
 /* Nav Link Underline Animation */
 .nav-link {
   position: relative;

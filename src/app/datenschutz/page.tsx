@@ -39,11 +39,21 @@ export default function Datenschutz() {
           <section>
             <h2 className="text-foreground font-medium text-base mb-2">2. Verantwortliche Stelle</h2>
             <p>
-              Bernd Weiler<br />
-              Birkenharder Straße 10<br />
-              88400 Biberach<br />
-              Deutschland<br />
-              E-Mail: kontakt@valueate.de<br />
+              Verantwortlich für die Datenverarbeitung auf dieser Website ist:
+            </p>
+            <p className="mt-2">
+              <span className="text-foreground/90">Valueate</span>
+              <br />
+              Inhaber: Bernd Weiler
+              <br />
+              Birkenharder Straße 10
+              <br />
+              88400 Biberach
+              <br />
+              Deutschland
+              <br />
+              E-Mail: kontakt@valueate.de
+              <br />
               Telefon: +49 152 0623 7493
             </p>
           </section>
@@ -53,37 +63,39 @@ export default function Datenschutz() {
 
             <h3 className="text-foreground/90 text-sm font-medium mt-4 mb-1">Server-Log-Dateien</h3>
             <p>
-              Der Provider der Seiten erhebt und speichert automatisch Informationen in sogenannten
-              Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind:
+              Der Hostinganbieter dieser Website (siehe Punkt 4) erhebt und speichert automatisch
+              Informationen in sogenannten Server-Log-Dateien, die Ihr Browser übermittelt. Dies
+              sind:
             </p>
             <ul className="list-disc list-inside mt-2 space-y-1 text-foreground/60">
               <li>Browsertyp und Browserversion</li>
               <li>Verwendetes Betriebssystem</li>
-              <li>Referrer URL</li>
+              <li>Referrer-URL</li>
               <li>Hostname des zugreifenden Rechners</li>
               <li>Uhrzeit der Serveranfrage</li>
               <li>IP-Adresse</li>
             </ul>
             <p className="mt-2">
-              Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen.
-              Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.
+              Diese Daten werden nicht mit anderen Datenquellen zusammengeführt. Rechtsgrundlage ist
+              Art. 6 Abs. 1 lit. f DSGVO. Das berechtigte Interesse liegt im technisch fehlerfreien
+              Betrieb und in der Sicherheit dieser Website. Auf die Speicherdauer der Log-Dateien
+              habe ich keinen unmittelbaren Einfluss, sie richtet sich nach den Vorgaben des
+              Hostinganbieters (siehe Punkt 4).
             </p>
 
             <h3 className="text-foreground/90 text-sm font-medium mt-4 mb-1">Kontaktformular</h3>
             <p>
-              Wenn Sie uns über das Kontaktformular eine Anfrage senden, werden die von Ihnen
+              Wenn Sie über das Kontaktformular eine Anfrage senden, werden die von Ihnen
               eingegebenen Angaben (Name, E-Mail-Adresse, Betreff und Nachricht) zum Zweck der
-              Bearbeitung Ihrer Anfrage und für den Fall von Anschlussfragen verarbeitet. Die
-              Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, bei nicht
-              vertragsbezogenen Anfragen auf Grundlage unseres berechtigten Interesses an der
-              Beantwortung nach Art. 6 Abs. 1 lit. f DSGVO.
+              Bearbeitung Ihrer Anfrage und für den Fall von Anschlussfragen verarbeitet.
+              Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, bei nicht vertragsbezogenen Anfragen
+              das berechtigte Interesse an der Beantwortung nach Art. 6 Abs. 1 lit. f DSGVO.
             </p>
             <p className="mt-2">
-              Für die technische Zustellung setzen wir den Dienst FormSubmit ein. Beim Absenden
-              werden Ihre Formularangaben an dessen Server übertragen und von dort per E-Mail an
-              das für Anfragen zuständige Postfach zugestellt. Der Anbieter hat seinen Sitz in
-              den USA, es findet also eine Übermittlung in ein Drittland statt. Weitere
-              Informationen finden Sie unter{" "}
+              Für die technische Zustellung wird der Dienst FormSubmit eingesetzt. Beim Absenden
+              werden Ihre Formularangaben an dessen Server übertragen und von dort per E-Mail
+              zugestellt. Der Anbieter hat seinen Sitz in den USA, es findet also eine Übermittlung
+              in ein Drittland statt. Weitere Informationen finden Sie unter{" "}
               <a
                 href="https://formsubmit.co/"
                 target="_blank"
@@ -92,13 +104,22 @@ export default function Datenschutz() {
               >
                 formsubmit.co
               </a>
-              . Wenn Sie diese Übermittlung vermeiden möchten, können Sie uns stattdessen direkt
-              per E-Mail an die unter Punkt 2 genannte Adresse kontaktieren.
+              . Wenn Sie diese Übermittlung vermeiden möchten, können Sie mich stattdessen direkt
+              per E-Mail an die unter Punkt 2 genannte Adresse erreichen.
             </p>
             <p className="mt-2">
-              Über den beschriebenen Weg der Zustellung hinaus geben wir Ihre Angaben nicht an
-              Dritte weiter. Sie werden gelöscht, sobald sie für den Zweck der Bearbeitung nicht
-              mehr erforderlich sind und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.
+              Anfragen über dieses Formular betreffen die sportliche Laufbahn von Elisa Frey.
+              FormSubmit stellt sie deshalb unmittelbar an das Postfach ihres Trainers und Managers
+              zu, der sie dort bearbeitet. Empfänger Ihrer Angaben sind also FormSubmit als
+              technischer Dienstleister und das Management von Elisa Frey als Bearbeiter. An weitere
+              Dritte gebe ich Ihre Angaben nicht. Gelöscht werden sie, sobald die Anfrage erledigt
+              ist und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.
+            </p>
+            <p className="mt-2">
+              Die Angaben im Formular sind weder gesetzlich noch vertraglich vorgeschrieben. Sie
+              sind allein deshalb erforderlich, weil ich Ihre Anfrage ohne Namen, E-Mail-Adresse und
+              Nachricht nicht beantworten kann. Machen Sie diese Angaben nicht, entsteht Ihnen kein
+              Nachteil, die Anfrage kommt dann lediglich nicht zustande.
             </p>
           </section>
 
@@ -117,15 +138,18 @@ export default function Datenschutz() {
               >
                 hostinger.de/datenschutz
               </a>
+              .
             </p>
           </section>
 
           <section>
             <h2 className="text-foreground font-medium text-base mb-2">5. Externe Links</h2>
             <p>
-              Diese Website enthält Links zu externen Diensten (Instagram, BoxRec). Beim Anklicken
+              Diese Website enthält Links zu externen Websites, unter anderem zu Instagram, zu
+              BoxRec und zu den Websites der auf dieser Seite genannten Unterstützer. Beim Anklicken
               dieser Links werden Sie auf die Server der jeweiligen Anbieter weitergeleitet. Dort
-              gelten die Datenschutzbestimmungen der jeweiligen Anbieter.
+              gelten deren Datenschutzbestimmungen. Solange Sie einen Link nicht anklicken, werden
+              keine Daten an diese Anbieter übertragen.
             </p>
           </section>
 
@@ -133,11 +157,26 @@ export default function Datenschutz() {
             <h2 className="text-foreground font-medium text-base mb-2">6. Ihre Rechte</h2>
             <p>
               Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und
-              Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein
-              Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Wenn Sie eine
-              Einwilligung zur Datenverarbeitung erteilt haben, können Sie diese jederzeit für die
-              Zukunft widerrufen. Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können
-              Sie sich jederzeit an uns wenden.
+              Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten (Art. 15 DSGVO).
+              Ebenso haben Sie ein Recht auf Berichtigung (Art. 16 DSGVO), auf Löschung
+              (Art. 17 DSGVO), auf Einschränkung der Verarbeitung (Art. 18 DSGVO) und auf
+              Datenübertragbarkeit (Art. 20 DSGVO).
+            </p>
+            <p className="mt-2">
+              Werden Ihre Daten auf Grundlage berechtigter Interessen nach Art. 6 Abs. 1 lit. f
+              DSGVO verarbeitet, können Sie der Verarbeitung aus Gründen, die sich aus Ihrer
+              besonderen Situation ergeben, jederzeit widersprechen (Art. 21 DSGVO). Haben Sie eine
+              Einwilligung erteilt, können Sie diese jederzeit mit Wirkung für die Zukunft
+              widerrufen.
+            </p>
+            <p className="mt-2">
+              Unabhängig davon steht Ihnen ein Beschwerderecht bei einer Aufsichtsbehörde zu
+              (Art. 77 DSGVO). Zuständig ist der Landesbeauftragte für den Datenschutz und die
+              Informationsfreiheit Baden-Württemberg, Lautenschlagerstraße 20, 70173 Stuttgart.
+            </p>
+            <p className="mt-2">
+              Für alle Anliegen rund um Ihre Daten erreichen Sie mich unter den in Punkt 2
+              genannten Kontaktdaten.
             </p>
           </section>
 

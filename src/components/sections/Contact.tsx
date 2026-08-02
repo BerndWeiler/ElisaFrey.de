@@ -80,7 +80,7 @@ export default function Contact() {
 
               <div>
                 <h4 className="font-display text-xl tracking-wide uppercase mb-3">
-                  Trainer &amp; Management
+                  Trainer und Management
                 </h4>
                 <span className="text-foreground font-medium">Björn Schulz</span>
                 <div className="flex items-center gap-3 mt-2">
@@ -162,7 +162,7 @@ export default function Contact() {
                       name="name"
                       required
                       className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-foreground placeholder:text-white/20 focus:outline-none focus:border-gold/50 focus:shadow-[0_0_10px_rgba(200,162,78,0.1)] transition-all"
-                      placeholder="Dein Name"
+                      placeholder="Ihr Name"
                     />
                   </div>
 
@@ -176,7 +176,7 @@ export default function Contact() {
                       name="email"
                       required
                       className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-foreground placeholder:text-white/20 focus:outline-none focus:border-gold/50 focus:shadow-[0_0_10px_rgba(200,162,78,0.1)] transition-all"
-                      placeholder="deine@email.de"
+                      placeholder="ihre@email.de"
                     />
                   </div>
 
@@ -204,7 +204,7 @@ export default function Contact() {
                       rows={5}
                       required
                       className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-foreground placeholder:text-white/20 focus:outline-none focus:border-gold/50 transition-colors resize-none"
-                      placeholder="Deine Nachricht..."
+                      placeholder="Ihre Nachricht"
                     />
                   </div>
 

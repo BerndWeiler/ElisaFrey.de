@@ -20,17 +20,20 @@ export default function Footer() {
           {profile.instagramHandle}
         </a>
 
+        {/* Impressum und Datenschutz sind Pflichtangaben und muessen leicht erkennbar sein
+            (§ 5 DDG). Bei /20 lag der Kontrast zum Hintergrund bei 1,71:1, die Links waren
+            praktisch unsichtbar. /60 ergibt 6,78:1 und besteht damit WCAG AA. */}
         <div className="flex items-center gap-4">
-          <Link href="/impressum" className="text-foreground/20 hover:text-foreground/40 transition-colors text-xs tracking-wider">
+          <Link href="/impressum" className="text-foreground/60 hover:text-gold transition-colors text-xs tracking-wider">
             Impressum
           </Link>
-          <span className="text-foreground/10">|</span>
-          <Link href="/datenschutz" className="text-foreground/20 hover:text-foreground/40 transition-colors text-xs tracking-wider">
+          <span className="text-foreground/30">|</span>
+          <Link href="/datenschutz" className="text-foreground/60 hover:text-gold transition-colors text-xs tracking-wider">
             Datenschutz
           </Link>
         </div>
 
-        <span className="text-foreground/20 text-xs tracking-wider">
+        <span className="text-foreground/50 text-xs tracking-wider">
           &copy; {new Date().getFullYear()} Elisa Frey. Alle Rechte vorbehalten.
         </span>
       </div>

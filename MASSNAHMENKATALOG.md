@@ -133,6 +133,47 @@ Der Fehler liegt seit mindestens **22.03.2026** vor. Alle `deploy`-Commits seith
 
 ---
 
+### A7. Impressum und Datenschutz auf Valueate umgestellt, dabei sechs Fehler gefunden
+`src/app/impressum/page.tsx`, `src/app/datenschutz/page.tsx`, `src/components/layout/Footer.tsx`
+
+Auf Wunsch steht in beiden Rechtstexten jetzt zuerst die Firma, darunter der Name: „Valueate, Inhaber: Bernd Weiler". Bei der Gelegenheit haben vier unabhängige Prüfungen (Impressumspflicht, DSGVO-Informationspflichten, Abgleich der Texte gegen den tatsächlichen Code, Stilregeln) 29 Befunde erhoben, jeder davon anschließend von zwei Skeptikern angegriffen. Was standgehalten hat:
+
+**1. Falsche Paragrafen im Haftungsteil.** Die Texte zitierten „§ 7 Abs. 1 TMG" und „§§ 8 bis 10 TMG". Das TMG gilt seit dem 14.05.2024 nicht mehr. Beim Umschreiben wurde zunächst nur die Abkürzung getauscht, ohne die Paragrafen zu prüfen. Das war falsch: § 7 DDG regelt die Anwendung des Digital Services Act, § 8 DDG einen Sperrungsanspruch, § 9 DDG Anbieterlisten, § 10 DDG behördliche Auskunftsverlangen. Keiner davon sagt etwas über Haftung für eigene Inhalte oder Überwachungsfreiheit. Die Haftungsprivilegien stehen heute in Art. 4 bis 6 und Art. 8 der Verordnung (EU) 2022/2065. Der Text verweist jetzt dorthin. An der Primärquelle (gesetze-im-internet.de, EUR-Lex) gegengeprüft. Für die Impressumsangaben selbst bleibt § 5 DDG richtig.
+
+**2. Die USt-IdNr. fehlte.** § 5 Abs. 1 Nr. 6 DDG verlangt sie, sobald eine vorhanden ist. DE461341413 besteht seit dem 02.04.2026. Ergänzt.
+
+**3. Die Pflichtlinks im Footer waren praktisch unsichtbar.** „Impressum" und „Datenschutz" standen auf `text-foreground/20`, gemessen **1,71:1** Kontrast zum Hintergrund. § 5 DDG verlangt „leicht erkennbar", WCAG AA fordert 4,5:1. Jetzt `/60`, gemessen an den gerenderten Pixeln **6,82:1**. Die Copyright-Zeile ging von 1,71:1 auf 4,98:1 mit.
+
+**4. Der beschriebene Datenweg stimmte nicht.** Die Erklärung sprach von „Weiterleitung" an das Management. Tatsächlich stellt FormSubmit direkt an dessen Postfach zu. Beide Empfänger sind jetzt ausdrücklich benannt.
+
+**5. Die Aufzählung der externen Links war unvollständig.** Genannt waren Instagram und BoxRec, nicht die vier verlinkten Unterstützer-Websites. Ergänzt.
+
+**6. Fehlende und stilwidrige Stellen.** Die Pflichtangabe nach Art. 13 Abs. 2 lit. e DSGVO (ist die Bereitstellung der Daten erforderlich?) fehlte, ebenso das Beschwerderecht nach Art. 77 DSGVO samt zuständiger Aufsichtsbehörde. Die Texte standen durchgehend in der Wir-Form statt in der Ich-Form. Im Kontaktformular duzten alle drei Platzhalter („Dein Name"), direkt über einem siezenden Hinweis; die Überschrift schrieb „Trainer & Management". Alles korrigiert und im Browser gegengeprüft: keine Gedankenstriche, kein „wir", kein Duzen, kein „&", keine TMG-Reste mehr.
+
+**Zwei Punkte bewusst nicht behauptet:** Die Speicherdauer der Server-Logs und ein Auftragsverarbeitungsvertrag mit Hostinger. Beides ließe sich nur als ungeprüfte Tatsachenbehauptung hineinschreiben. Die Speicherdauer verweist jetzt auf den Hoster, der AVV-Hinweis fehlt bis zur Klärung.
+
+**Offen und entscheidungsbedürftig:** siehe A8.
+
+---
+
+### A8. Der Formularversand in die USA hat keine tragfähige Rechtsgrundlage
+`src/components/sections/Contact.tsx`, `src/app/datenschutz/page.tsx`
+
+Art. 44 DSGVO verlangt für jede Übermittlung in ein Drittland eine eigene Grundlage aus Kapitel V, zusätzlich zur Rechtsgrundlage der Verarbeitung selbst. FormSubmit sitzt in den USA. Für die USA gibt es zwar einen Angemessenheitsbeschluss (EU-US Data Privacy Framework), der gilt aber nur für zertifizierte Unternehmen. FormSubmit ist nicht zertifiziert, Standardvertragsklauseln bestehen nicht.
+
+Damit bleibt nur die ausdrückliche Einwilligung nach Art. 49 Abs. 1 lit. a DSGVO. Die holt das Formular nicht ein: Es enthält nur `name`, `email`, `subject`, `message` sowie die versteckten Felder `_captcha` und `_honey`. Der Hinweistext unter dem Button informiert, er ist keine Einwilligung.
+
+**Zwei Wege, beide sauber:**
+
+| Weg | Was zu tun ist | Preis |
+|---|---|---|
+| Einwilligung einholen | Pflicht-Checkbox vor dem Absenden, nicht vorausgewählt, mit Risikohinweis USA | Eine Hürde mehr im Formular |
+| Anbieter mit EU-Standort | Formularversand umstellen, Drittland-Absatz entfällt ersatzlos | Einmalige Umstellung, danach dauerhaft einfacher |
+
+Der zweite Weg ist der bessere: Er räumt das Problem weg, statt es zu verwalten, und das Formular bleibt so schlank wie jetzt.
+
+---
+
 ## B. Kurzfristig: sichtbare Qualität
 
 ### B1. Die Sponsorenlogos sind halb unsichtbar

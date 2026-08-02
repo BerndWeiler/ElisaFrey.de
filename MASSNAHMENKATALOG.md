@@ -5,9 +5,11 @@
 
 Jeder Punkt unten ist am Code oder an einer Messung belegt. Vermutungen sind als solche gekennzeichnet.
 
-> **Umsetzungsstand 02.08.2026:** Block A vollständig erledigt. Aus Block B sind **B1** (Sponsorenlogos) und **B4** (Assets) erledigt. Offen: B2, B3, B5 bis B10 sowie die Blöcke C und D.
+> **Umsetzungsstand 02.08.2026:** Block A vollständig erledigt. Aus Block B sind **B1** (Sponsorenlogos) und **B4** (Assets) erledigt. Neu dazugekommen und ebenfalls erledigt: **A6** (Impressum und Datenschutz waren nicht erreichbar). Offen: B2, B3, B5 bis B10 sowie die Blöcke C und D.
 >
-> **Achtung, noch nicht live.** Commit, Push und der GitHub-Actions-Build sind durch, der `deploy`-Branch trägt den neuen Stand. Hostinger liefert aber weiterhin den Stand vom 17.04.2026 aus (per `last-modified`-Header geprüft). Der letzte Schritt der Kette passiert offenbar nicht automatisch und muss im Hostinger-Panel angestoßen werden. Ein Push auf `main` allein bedeutet also nicht, dass Änderungen öffentlich sind.
+> **Live seit 02.08.2026, 12:55 Uhr.** Gegen die öffentliche Seite nachgemessen: `last-modified: Sun, 02 Aug 2026 12:55:02 GMT`, Meta-Beschreibung zeigt 100 % KO-Rate, das Popup ist weg, die vier Sponsoren-PNGs liefern HTTP 200, die Videos laufen live in 1080×1920, die Startseite ist nach 363 ms geladen.
+>
+> **Merksatz für künftige Änderungen:** Push auf `main` bedeutet nicht automatisch live. Nach dem GitHub-Actions-Lauf muss Hostinger den `deploy`-Branch ziehen. Kontrolle: `curl -sI https://elisafrey.com/ | grep last-modified`.
 
 ---
 
@@ -106,6 +108,28 @@ Auf Mobile kommt ein Darstellungsfehler dazu: Der Stempel ist mit fester Pixelgr
 Angenehmer Nebeneffekt: `victory-stanglwirt.jpg` mit 3,83 MB wurde per `priority` vorgeladen und war damit das schwerste Element beim Seitenstart. Dieser Vorabruf ist jetzt weg. Die Datei muss aber im Projekt bleiben, weil das JSON-LD sie als Bild für den Titelkampf referenziert. Google holt sie beim Crawlen, Besucher laden sie nicht mehr mit. Verkleinern lohnt sich trotzdem, siehe B4.
 
 Im Browser verifiziert: kein Stempel und kein Popup-Bild mehr im Dokument, `body`-Scrollsperre nicht mehr gesetzt, Seite ab dem ersten Moment scrollbar.
+
+---
+
+### A6. Impressum und Datenschutzerklärung waren nicht erreichbar
+`next.config.ts`
+
+Gefunden am 02.08.2026 beim Nachmessen der frisch veröffentlichten Seite. Der Befund war im Code-Audit nicht sichtbar, weil er erst durch das Zusammenspiel von Next.js-Export und dem Apache auf Hostinger entsteht.
+
+Der statische Export legt für jede Unterseite **zwei Dinge nebeneinander** an: die Datei `datenschutz.html` und zusätzlich einen Ordner `datenschutz/` mit internen Datendateien. Der Apache sieht den Ordner, leitet `/datenschutz` per 301 auf `/datenschutz/` um und findet dort keine `index.html`. Ergebnis:
+
+```
+https://elisafrey.com/datenschutz  →  301  →  /datenschutz/  →  403 Forbidden
+https://elisafrey.com/impressum    →  301  →  /impressum/    →  403 Forbidden
+```
+
+Im Browser gegengeprüft: beide Seiten zeigten „403 Forbidden. Access to this resource on the server is denied!"
+
+Beim Klick im Footer fiel es nicht auf, weil Next.js die Seite dann im Browser selbst zusammenbaut, ohne den Server zu fragen. Kaputt war jeder Weg, der wirklich beim Server landet: Direktaufruf, Lesezeichen, Link aus einer Mail, Treffer aus Google, „in neuem Tab öffnen", und jeder Aufruf durch eine Behörde oder einen Abmahnanwalt.
+
+Der Fehler liegt seit mindestens **22.03.2026** vor. Alle `deploy`-Commits seither haben dieselbe Struktur. Das ist der bisher schwerste Einzelbefund: Ein Impressum muss nach § 5 DDG unmittelbar erreichbar sein, und die Informationspflichten nach Art. 13 DSGVO setzen eine abrufbare Datenschutzerklärung voraus.
+
+**Umgesetzt:** `trailingSlash: true` in `next.config.ts`. Damit erzeugt der Export `datenschutz/index.html` statt der Datei-neben-Ordner-Konstruktion, und die interne Verlinkung wird automatisch auf `/datenschutz/` umgestellt. Über einen lokalen Testserver gegen den fertigen Export geprüft: `/datenschutz/` und `/impressum/` liefern 200, die alten Adressen ohne Schrägstrich leiten sauber dorthin weiter. Titel und Inhalt beider Seiten stimmen.
 
 ---
 

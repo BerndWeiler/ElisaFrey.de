@@ -70,8 +70,13 @@ export default function Hero() {
         }}
       />
 
-      {/* Content */}
-      <div className="relative z-10 w-full px-6 pb-20 md:pb-28">
+      {/* Content
+          pb-32 auf schmalen Viewports: Dort bricht die Zeile neben der Bilanz
+          um und stiess bei 390x844 exakt an den Scroll-Hinweis (Bilanz endete
+          bei y=757, der Hinweis begann bei y=756). Der Hinweis steht bei
+          bottom-8 und ist samt Strich rund 52 px hoch, 80 px Innenabstand
+          liessen also nur 4 px Luft. */}
+      <div className="relative z-10 w-full px-6 pb-32 md:pb-28">
         <div className="mx-auto max-w-7xl">
           {/* Name */}
           <h1 className="font-display text-[clamp(3rem,12vw,12rem)] leading-[0.85] tracking-wide uppercase">
@@ -219,7 +224,7 @@ export default function Hero() {
               </span>
             </div>
             <span className="text-gold text-sm md:text-base tracking-[0.2em] uppercase font-medium">
-              All Wins by KO
+              Alle Siege durch K. o.
             </span>
           </motion.div>
         </div>
@@ -233,7 +238,7 @@ export default function Hero() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
         <span className="text-foreground/30 text-xs tracking-[0.3em] uppercase">
-          Scroll
+          Mehr
         </span>
         <motion.div
           animate={{ y: [0, 8, 0] }}

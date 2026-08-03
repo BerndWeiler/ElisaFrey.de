@@ -119,6 +119,12 @@ body {
   }
 }
 
+/* Auch beim Tastaturfokus anhalten. Sonst wandert genau das Bild aus dem Bild,
+   das gerade fokussiert ist, und man kann es nicht mehr ansteuern. */
+.filmstrip-track:focus-within {
+  animation-play-state: paused;
+}
+
 .filmstrip-container {
   mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
@@ -217,18 +223,56 @@ body {
   position: relative;
 }
 
+/* Wachsende Unterstreichung, aus der Mitte heraus.
+   Ueber transform statt ueber width und left: Beide loesen bei jedem Bild eine
+   Neuberechnung des Layouts aus, transform laeuft im Compositor. Der optische
+   Effekt ist derselbe, weil scaleX standardmaessig aus der Mitte skaliert. */
 .nav-link::after {
   content: "";
   position: absolute;
   bottom: -4px;
-  left: 50%;
-  width: 0;
+  left: 0;
+  right: 0;
   height: 1px;
   background: var(--color-gold);
-  transition: width 0.3s ease, left 0.3s ease;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
 }
 
-.nav-link:hover::after {
-  width: 100%;
-  left: 0;
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Bewegung abschaltbar (WCAG 2.2.2, Stufe A)
+   Wer im Betriebssystem „Bewegung reduzieren" gesetzt hat, bekommt die Seite
+   ohne Dauerbewegung. Framer Motion wird zusaetzlich ueber MotionConfig in
+   SmoothScroll.tsx umgestellt, Lenis und die Videos ebenfalls dort und in den
+   jeweiligen Komponenten. CSS allein reicht nicht, weil Framer Motion seine
+   Werte per Inline-Style setzt. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  /* Das Laufband der Galerie steht still. Damit die hinteren Bilder trotzdem
+     erreichbar bleiben, wird der Streifen von Hand scrollbar. Ohne das waeren
+     sie hinter overflow-hidden eingesperrt. */
+  .filmstrip-track {
+    animation: none !important;
+  }
+
+  .filmstrip-container {
+    overflow-x: auto;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
 }

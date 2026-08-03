@@ -51,7 +51,7 @@ export default function Contact() {
             <div className="space-y-8">
               <div>
                 <h3 className="font-display text-3xl tracking-wide uppercase mb-4">
-                  Let&apos;s Connect
+                  Schreiben Sie mir
                 </h3>
                 <p className="text-muted leading-relaxed">
                   Ob Medienanfragen, Sponsoring-Möglichkeiten oder Kooperationen.
@@ -178,21 +178,21 @@ export default function Contact() {
                       id="name"
                       name="name"
                       required
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-foreground placeholder:text-white/20 focus:outline-none focus:border-gold/50 focus:shadow-[0_0_10px_rgba(200,162,78,0.1)] transition-all"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-foreground placeholder:text-foreground/50 focus:border-gold/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold transition-all"
                       placeholder="Ihr Name"
                     />
                   </div>
 
                   <div>
                     <label htmlFor="email" className="block text-xs tracking-[0.2em] uppercase text-muted mb-2">
-                      Email
+                      E-Mail
                     </label>
                     <input
                       type="email"
                       id="email"
                       name="email"
                       required
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-foreground placeholder:text-white/20 focus:outline-none focus:border-gold/50 focus:shadow-[0_0_10px_rgba(200,162,78,0.1)] transition-all"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-foreground placeholder:text-foreground/50 focus:border-gold/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold transition-all"
                       placeholder="ihre@email.de"
                     />
                   </div>
@@ -209,7 +209,7 @@ export default function Contact() {
                       ref={betreffRef}
                       value={betreff}
                       onChange={(e) => setBetreff(e.target.value)}
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-foreground placeholder:text-white/20 focus:outline-none focus:border-gold/50 focus:shadow-[0_0_10px_rgba(200,162,78,0.1)] transition-all"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-foreground placeholder:text-foreground/50 focus:border-gold/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold transition-all"
                       placeholder="Worum geht es?"
                     />
                   </div>
@@ -223,7 +223,7 @@ export default function Contact() {
                       name="message"
                       rows={5}
                       required
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-foreground placeholder:text-white/20 focus:outline-none focus:border-gold/50 transition-colors resize-none"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-foreground placeholder:text-foreground/50 focus:border-gold/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold transition-colors resize-none"
                       placeholder="Ihre Nachricht"
                     />
                   </div>

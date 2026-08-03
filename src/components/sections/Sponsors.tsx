@@ -20,7 +20,10 @@ export default function Sponsors() {
   // Auf Touch-Geraeten ersetzt das Sichtbarwerden den fehlenden Mauszeiger.
   const imBlick = useInView(reiheRef, { once: true, amount: 0.4 });
 
-  const zahlenStehen = reichweite.some((eintrag) => eintrag.wert.trim() !== "");
+  // Zahlen, die vorliegen, werden gezeigt. Fehlende erscheinen nicht als leere
+  // Karte, sondern nur im Entwurfsmodus als Hinweis, was noch zu beschaffen ist.
+  const bekannteZahlen = reichweite.filter((eintrag) => eintrag.wert.trim() !== "");
+  const offeneZahlen = reichweite.filter((eintrag) => eintrag.wert.trim() === "");
 
   return (
     <section id="unterstuetzer" className="relative py-20 md:py-32 px-6">
@@ -87,25 +90,29 @@ export default function Sponsors() {
 
           {/* Reichweite */}
           <FadeIn>
-            <div className="mt-12">
-              {zahlenStehen ? (
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 max-w-3xl mx-auto">
-                  {reichweite.map((eintrag) => (
-                    <div key={eintrag.label} className="glass-card rounded-2xl px-5 py-6 text-center">
+            <div className="mt-12 space-y-5">
+              {bekannteZahlen.length > 0 && (
+                <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+                  {bekannteZahlen.map((eintrag) => (
+                    <div
+                      key={eintrag.label}
+                      className="glass-card rounded-2xl px-8 py-6 text-center min-w-[15rem]"
+                    >
                       <span className="block font-display text-4xl tracking-wide text-gold leading-none">
                         {eintrag.wert}
                       </span>
-                      <span className="mt-2 block text-xs tracking-[0.15em] uppercase text-foreground/55">
+                      <span className="mt-2 block text-xs tracking-[0.15em] uppercase text-foreground/60">
                         {eintrag.label}
                       </span>
                     </div>
                   ))}
                 </div>
-              ) : (
+              )}
+
+              {offeneZahlen.length > 0 && (
                 <Platzhalter label="Zahlen fehlen" className="max-w-3xl mx-auto">
-                  Hier gehören drei belastbare Zahlen hin: Follower auf Instagram,
-                  Zuschauer am Kampfabend und Reichweite pro Kampfbeitrag. Ein Sponsor
-                  prüft diese Angaben nach, deshalb steht hier nichts Geschätztes.
+                  Es fehlen noch: {offeneZahlen.map((e) => e.label).join(" und ")}. Ein
+                  Sponsor prüft solche Angaben nach, deshalb steht hier nichts Geschätztes.
                 </Platzhalter>
               )}
             </div>

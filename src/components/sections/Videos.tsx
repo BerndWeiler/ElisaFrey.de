@@ -11,21 +11,22 @@ export default function Videos() {
       <div className="mx-auto max-w-7xl">
         <SectionHeading title="Videos" />
 
-        {/* Desktop: 3-column grid */}
-        <StaggerChildren className="hidden md:grid grid-cols-3 gap-6">
-          {videos.map((video) => (
-            <VideoCard key={video.id} video={video} />
-          ))}
-        </StaggerChildren>
-
-        {/* Mobile: Horizontal scroll carousel */}
+        {/* Eine einzige Liste fuer beide Ansichten.
+            Vorher standen Desktop-Raster und Handy-Karussell nebeneinander im
+            Markup, jeweils per hidden beziehungsweise md:hidden ausgeblendet.
+            Dadurch lagen sechs video-Elemente fuer drei Videos im Dokument.
+            Ab md wird aus dem waagerecht scrollbaren Streifen ein Raster. */}
         <div
-          className="md:hidden overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-6 px-6"
+          className="-mx-6 px-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide
+            md:mx-0 md:px-0 md:overflow-visible"
           data-lenis-prevent
         >
-          <StaggerChildren className="flex gap-4 w-max">
+          <StaggerChildren className="flex gap-4 w-max md:grid md:w-auto md:grid-cols-3 md:gap-6">
             {videos.map((video) => (
-              <div key={video.id} className="w-[80vw] flex-shrink-0 snap-center">
+              <div
+                key={video.id}
+                className="w-[80vw] flex-shrink-0 snap-center md:w-auto md:flex-shrink"
+              >
                 <VideoCard video={video} />
               </div>
             ))}

@@ -5,7 +5,9 @@
 
 Jeder Punkt unten ist am Code oder an einer Messung belegt. Vermutungen sind als solche gekennzeichnet.
 
-> **Umsetzungsstand 03.08.2026:** Erledigt sind **A1 bis A8**, aus Block B **B1** (Sponsorenlogos), **B3** (geprüft und bewusst geschlossen), **B4** (Assets), **B6 teilweise** (Pflichtlinks im Footer), **B8/B10 teilweise** (Anrede und Anglizismen im Kontaktformular), aus Block C **C1, C2, C3, C5 und C6** (gebaut am 03.08.2026, siehe unten). Offen: B2, B5, B7, Reste von B6/B8/B9/B10, **C4** (Kampfvideo) sowie Block D. Entscheidungsbedürftig: **A8** (Formularversand in die USA, von Bernd am 03.08.2026 bewusst akzeptiert).
+> **Umsetzungsstand 03.08.2026:** Erledigt sind **A1 bis A8**, **Block B vollständig** (B1 bis B10) sowie aus Block C **C1, C2, C3, C5 und C6**. Offen: **C4** (Kampfvideo) und Block D. Entscheidungsbedürftig: **A8** (Formularversand in die USA, von Bernd am 03.08.2026 bewusst akzeptiert).
+>
+> **Eine Ausnahme in B8:** Die offizielle Titelbezeichnung bleibt englisch, das ist keine Stilentscheidung.
 >
 > **Entwurfsmodus:** C1, C2 und C3 stehen als Entwurf mit sichtbar markierten Lücken auf der Seite. Der Schalter `ENTWURFSMODUS` in `src/lib/data.ts` steuert die Markierungen. Sobald Elisas Texte und die Reichweitenzahlen eingetragen sind, auf `false` stellen. Erst dann ist die Seite öffentlich vorzeigbar.
 >
@@ -219,6 +221,17 @@ Nachgemessen bei 390×844: „All Wins by KO" endet bei y=757, „Scroll" beginn
 
 **Fix:** Scroll-Indikator auf kleinen Viewports ausblenden oder den unteren Innenabstand des Inhaltsblocks erhöhen. Aufwand: klein.
 
+
+**Umgesetzt am 03.08.2026:** Unterer Innenabstand des Inhaltsblocks im Hero auf schmalen Viewports von `pb-20` auf `pb-32` erhoeht, Desktop bleibt bei `pb-28`. Der Scroll-Hinweis steht bei `bottom-8` und ist samt Strich rund 52 px hoch, 80 px Innenabstand liessen also nur 4 px Luft, und die umbrechende Zeile frass sie auf.
+
+Nachgemessen auf drei Geraeten, jeweils nach Ablauf der Einblendungen:
+
+| Viewport | Abstand vorher | Abstand jetzt |
+|---|---|---|
+| 390x844 | -1 px (Ueberlappung) | 40 px |
+| 360x640 | -1 px | 40 px |
+| 414x896 | -1 px | 40 px |
+
 ### B3. Das Startbild ist zu klein für große Bildschirme — GEPRÜFT UND BEWUSST GESCHLOSSEN
 `public/images/hero-ring.jpg`
 
@@ -290,6 +303,11 @@ Der Klick-Handler sitzt auf einem `<figure>`. Das ist nicht fokussierbar, es gib
 
 **Fix:** `<figure>` durch `<button type="button" aria-label={image.alt}>` ersetzen und einen goldenen Fokusring ergänzen. Dabei zwei Folgeprobleme mitlösen: Das Laufband pausiert bisher nur bei `:hover`, es muss auch bei `:focus-within` stoppen, sonst wandert das fokussierte Bild weg. Und die zweite Hälfte des verdoppelten Arrays braucht `aria-hidden` und `tabIndex={-1}`, sonst entstehen 32 statt 16 Tab-Stopps. Aufwand: klein.
 
+
+**Umgesetzt am 03.08.2026:** `figure` durch `button` ersetzt, mit sprechendem `aria-label` und goldenem Fokusring. Beide Folgeprobleme mitgeloest: Das Laufband haelt jetzt auch bei `:focus-within` an, nicht nur bei `:hover`, und die zweite Haelfte des verdoppelten Arrays traegt `aria-hidden` sowie `tabIndex={-1}`.
+
+Im Browser geprueft: 32 Schaltflaechen im Dokument, davon 16 per Tabulator erreichbar und 16 als Kopie ausgeblendet. Das Laufband meldet bei Fokus `animation-play-state: paused`. Die Lightbox oeffnet per Eingabetaste.
+
 ### B6. Zu blasse Texte
 `src/components/layout/Footer.tsx:10, 18, 24, 28, 33`, `src/components/sections/Contact.tsx:138, 152, 166, 180`
 
@@ -302,6 +320,20 @@ Dazu: `focus:outline-none` auf allen vier Formularfeldern entfernt den Fokusrahm
 
 **Fix:** Footer-Links auf `text-foreground/70`, Copyright auf `/60`, Platzhalter auf `text-white/40` oder heller. `focus:outline-none` durch `focus-visible:outline-2 focus-visible:outline-gold` ersetzen. Aufwand: klein, bleibt optisch zurückhaltend.
 
+
+**Umgesetzt am 03.08.2026** (die Pflichtlinks waren schon am 02.08. erledigt): Wortmarke im Footer von `/40` auf `/55`, Instagram-Link von `/40` auf `/60`, Formular-Platzhalter von `text-white/20` auf `text-foreground/50`. Der Trennstrich zwischen den Fusszeilen-Links ist rein dekorativ und jetzt als `aria-hidden` ausgezeichnet.
+
+`focus:outline-none` ist an allen vier Formularfeldern entfernt und durch `focus-visible:outline-2 focus-visible:outline-gold` ersetzt. Die beiden verbliebenen `focus:outline-none` sitzen auf den Meldungsbloecken mit `tabIndex={-1}`, die den Fokus programmatisch bekommen. Dort ist ein Rahmen unerwuenscht, das ist Absicht.
+
+Kontraste gegen `#0a0a0a` nachgerechnet, alle bestehen WCAG AA:
+
+| Element | vorher | jetzt |
+|---|---|---|
+| Wortmarke im Footer | 3,55:1 | 5,81:1 |
+| Instagram-Link im Footer | 3,55:1 | 6,78:1 |
+| Formular-Platzhalter | rund 2:1 | 5,01:1 |
+| Copyright | 5,01:1 | unveraendert |
+
 ### B7. Bewegung ohne Ausschalter
 `src/app/globals.css` (gesamte Datei), diverse Komponenten
 
@@ -313,6 +345,20 @@ Für Menschen mit vestibulären Beschwerden ist besonders das Popup problematisc
 
 **Nebenbefund:** `.breathe-zoom` in `globals.css:154-161` wird nirgends verwendet, toter Code. `spark-glow-pulse` animiert `box-shadow`, was den Browser dauerhaft neu zeichnen lässt. Besser über die Deckkraft eines Pseudo-Elements lösen.
 
+
+**Umgesetzt am 03.08.2026** auf vier Ebenen, weil eine allein nicht reicht:
+
+1. **CSS:** Block `@media (prefers-reduced-motion: reduce)` in `globals.css`. Animationen und Uebergaenge gehen auf 0,01 ms. Das Laufband der Galerie steht still und wird stattdessen von Hand scrollbar, sonst waeren die hinteren Bilder hinter `overflow-hidden` eingesperrt.
+2. **Framer Motion:** `MotionConfig reducedMotion="user"` in `SmoothScroll.tsx`. Wirkt zentral auf FadeIn, StaggerChildren, TextReveal und den Hero.
+3. **Lenis:** Weiches Scrollen ist selbst eine unangeforderte Bewegung und wird nicht mehr initialisiert.
+4. **Videos:** starten nicht von allein, laufen nicht in Schleife und bekommen Bedienelemente.
+
+**Wichtiger Fallstrick, aufgetreten und behoben:** `useReducedMotion` aus Framer Motion liest den Wert nur einmal in einen `useState`-Startwert. Bei einem statischen Export steht dort noch der Wert aus dem Build, der Haken bleibt auf `false` haengen. Nachgemessen: Die Videos behielten `autoplay` und `loop`, obwohl die Medienabfrage im selben Dokument `true` lieferte. Ersetzt durch einen eigenen Hook in `src/lib/bewegung.ts` auf Basis von `useSyncExternalStore`, der beim Build und beim ersten Rendern denselben Wert liefert (kein Hydrationsfehler) und danach umschaltet.
+
+Im Browser mit `reducedMotion: reduce` geprueft: Laufband-Animation `none`, Streifen scrollbar, Videos `autoplay=false`, `loop=false`, `controls=true`. Im Normalfall unveraendert: Video laeuft, keine Bedienelemente, Laufband animiert. Keine Hydrationsmeldungen in der Konsole.
+
+**Nebenbefund erledigt:** Die Navigations-Unterstreichung animierte `width` und `left`, beides loest bei jedem Bild eine Layoutberechnung aus. Jetzt ueber `transform: scaleX()`, optisch identisch, und sie reagiert zusaetzlich auf `:focus-visible`.
+
 ### B8. Englische Fragmente auf einer deutschen Seite
 `Hero.tsx:220, 234`, `Contact.tsx:24, 146`, `data.ts:25, 36, 129`
 
@@ -320,12 +366,20 @@ Für Menschen mit vestibulären Beschwerden ist besonders das Popup problematisc
 
 **Fix:** „Alle Siege durch KO", Pfeil statt „Scroll" oder „Nach unten", „Kontakt aufnehmen", „E-Mail". Bei den Titel-Badges ist die englische Verbandsbezeichnung vertretbar, weil sie der offizielle Titelname ist, das sollte aber bewusst entschieden werden. Aufwand: klein.
 
+
+**Umgesetzt am 03.08.2026:** Aus "All Wins by KO" wurde "Alle Siege durch K. o." (mit geschuetztem Leerzeichen, sonst bricht "o." allein um), aus "Scroll" wurde "Mehr", aus "Let's Connect" wurde "Schreiben Sie mir", aus "Email" wurde "E-Mail".
+
+**Bewusst nicht geaendert:** die offizielle Titelbezeichnung "BDB German Super Fly". Das ist der Name des Titels, keine Stilfrage.
+
 ### B9. Gedankenstriche als Pausenmarker
 `Contact.tsx:27`, `layout.tsx:12, 33, 87, 102, 106, 123, 138`, `data.ts:25, 36`, `impressum/page.tsx:6`
 
 Beispiel aus `Contact.tsx:27`: „Ob Medienanfragen, Sponsoring-Möglichkeiten oder Kooperationen – ich freue mich über jede Nachricht." Das Zeichen ist per Codepoint-Prüfung U+2013. Betrifft auch die Texte, die Google im Suchergebnis anzeigt.
 
 **Fix:** Durch Punkt, Komma oder Doppelpunkt ersetzen. Aufwand: klein.
+
+
+**Umgesetzt am 03.08.2026:** Alle Gedankenstriche in sichtbaren Texten und in den Metadaten ersetzt, in `layout.tsx` fuenf Stueck und in `data.ts` zwei. Trennung jetzt per Doppelpunkt oder Komma. In Code-Kommentaren stehen weiterhin welche, das ist unkritisch.
 
 ### B10. Die Anrede wechselt mitten auf der Seite
 `Contact.tsx:139, 153, 181` gegen `impressum/page.tsx` und `datenschutz/page.tsx`

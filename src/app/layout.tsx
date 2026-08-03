@@ -87,7 +87,7 @@ const jsonLd = {
       },
       organizer: {
         "@type": "Organization",
-        name: "BDB — Bund Deutscher Berufsboxer",
+        name: "BDB, Bund Deutscher Berufsboxer",
       },
       offers: {
         "@type": "Offer",
@@ -102,11 +102,11 @@ const jsonLd = {
         { "@type": "Person", name: "Nicole Purwins" },
       ],
       description:
-        "BDB Deutsche Meisterschaft — Elisa Frey vs Nicole Purwins, Sieg durch TKO in Runde 5.",
+        "BDB Deutsche Meisterschaft: Elisa Frey vs Nicole Purwins, Sieg durch TKO in Runde 5.",
     },
     {
       "@type": "SportsEvent",
-      name: "BDB German Super Fly — Titelverteidigung",
+      name: "BDB German Super Fly: Titelverteidigung",
       image: "https://elisafrey.com/images/victory-stanglwirt.jpg",
       startDate: "2026-04-12T20:00:00+02:00",
       endDate: "2026-04-12T23:00:00+02:00",
@@ -123,7 +123,7 @@ const jsonLd = {
       },
       organizer: {
         "@type": "Organization",
-        name: "BDB — Bund Deutscher Berufsboxer",
+        name: "BDB, Bund Deutscher Berufsboxer",
       },
       offers: {
         "@type": "Offer",
@@ -138,7 +138,7 @@ const jsonLd = {
         { "@type": "Person", name: "Oliwia Koziura" },
       ],
       description:
-        "BDB German Super Fly — Elisa Frey verteidigt ihren Titel am 12.04.2026 im Hotel Stanglwirt gegen Oliwia Koziura und gewinnt durch TKO in Runde 3.",
+        "BDB German Super Fly: Elisa Frey verteidigt ihren Titel am 12.04.2026 im Hotel Stanglwirt gegen Oliwia Koziura und gewinnt durch TKO in Runde 3.",
     },
     {
       "@type": "WebSite",

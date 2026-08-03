@@ -43,7 +43,7 @@ export const fights: Fight[] = [
     method: "TKO",
     round: 3,
     isTitle: true,
-    title: "BDB German Super Fly — Titel verteidigt",
+    title: "BDB German Super Fly: Titel verteidigt",
   },
   {
     id: 1,
@@ -54,7 +54,7 @@ export const fights: Fight[] = [
     method: "TKO",
     round: 5,
     isTitle: true,
-    title: "BDB German Super Fly — Titelgewinn",
+    title: "BDB German Super Fly: Titelgewinn",
   },
   {
     id: 2,
@@ -195,12 +195,14 @@ export const sponsoringPakete: SponsoringPaket[] = [
 
 /**
  * Reichweitenzahlen fuer das Sponsoring-Modul.
- * ENTWURF: Die Werte sind Platzhalter. Echte Zahlen kommen aus dem
- * Instagram-Konto und von den Veranstaltern. Nichts hiervon raten, ein
- * Sponsor prueft das nach.
+ * Leerer `wert` heisst: Zahl liegt noch nicht vor. Solche Eintraege werden
+ * nicht als leere Karte angezeigt, sondern im Entwurfsmodus als Luecke
+ * aufgelistet. Nichts hiervon schaetzen, ein Sponsor prueft das nach.
+ *
+ * Instagram ist Elisas einziger Kanal, TikTok gibt es nicht (Stand 03.08.2026).
  */
 export const reichweite = [
-  { wert: "", label: "Follower auf Instagram" },
+  { wert: "6.900", label: "Follower auf Instagram" },
   { wert: "", label: "Zuschauer am Kampfabend" },
   { wert: "", label: "Reichweite pro Kampfbeitrag" },
 ];

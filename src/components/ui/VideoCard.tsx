@@ -1,8 +1,9 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { Video } from "@/types";
+import { useBewegungReduzieren } from "@/lib/bewegung";
 import { staggerItem } from "@/components/animations/StaggerChildren";
 
 interface VideoCardProps {
@@ -12,18 +13,24 @@ interface VideoCardProps {
 export default function VideoCard({ video }: VideoCardProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  // Merker im Ref statt im Zustand: Er steuert nichts an der Darstellung.
+  // Als Zustand loeste er bei jedem Video einen zusaetzlichen Renderdurchlauf
+  // aus, den ESLint zu Recht als set-state-in-effect anmahnte.
+  const geladen = useRef(false);
   const isInView = useInView(containerRef, { once: true, margin: "200px" });
-  const [loaded, setLoaded] = useState(false);
+  const bewegungReduzieren = useBewegungReduzieren();
 
   useEffect(() => {
-    if (!isInView || loaded) return;
+    // Bei „Bewegung reduzieren" startet nichts von allein. Stattdessen bekommt
+    // das Video Bedienelemente, mit denen man es selbst starten kann.
+    if (!isInView || geladen.current || bewegungReduzieren) return;
     const el = videoRef.current;
     if (!el) return;
+    geladen.current = true;
     el.src = video.src;
     el.load();
     el.play().catch(() => {});
-    setLoaded(true);
-  }, [isInView, loaded, video.src]);
+  }, [isInView, video.src, bewegungReduzieren]);
 
   return (
     <motion.div
@@ -34,11 +41,13 @@ export default function VideoCard({ video }: VideoCardProps) {
       <div className="relative aspect-[9/16] bg-black/40">
         <video
           ref={videoRef}
-          autoPlay
+          src={bewegungReduzieren ? video.src : undefined}
+          autoPlay={!bewegungReduzieren}
           muted
-          loop
+          loop={!bewegungReduzieren}
+          controls={bewegungReduzieren}
           playsInline
-          preload="none"
+          preload={bewegungReduzieren ? "metadata" : "none"}
           poster={video.poster}
           className="absolute inset-0 w-full h-full object-cover"
         />

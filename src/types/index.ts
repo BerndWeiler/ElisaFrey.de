@@ -50,6 +50,16 @@ export interface WegAbsatz {
   vonElisa?: boolean;
 }
 
+export interface Presseartikel {
+  medium: string;
+  titel: string;
+  /** Anzeigeformat DD.MM.YYYY */
+  datum: string;
+  url: string;
+  /** Ein Satz dazu, worum es geht. Steht unter dem Titel. */
+  notiz: string;
+}
+
 export interface SponsoringPaket {
   name: string;
   beschreibung: string;

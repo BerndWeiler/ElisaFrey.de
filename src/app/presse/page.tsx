@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import KopierText from "@/components/ui/KopierText";
-import { fights, fotograf, profile } from "@/lib/data";
+import { fights, fotograf, presseartikel, profile } from "@/lib/data";
 import { EMPFAENGER } from "@/lib/kontakt";
 
 export const metadata: Metadata = {
@@ -98,6 +98,47 @@ export default function Presse() {
                 </dd>
               </div>
             </dl>
+          </section>
+
+          {/* Berichterstattung: belegt die Reichweite besser als jede eigene
+              Beschreibung. Reihenfolge: juengster Artikel zuerst. */}
+          <section>
+            <h2 className="font-display text-2xl tracking-wide uppercase mb-4">
+              Berichterstattung
+            </h2>
+            <ul className="space-y-3">
+              {presseartikel.map((artikel) => (
+                <li key={artikel.url}>
+                  <a
+                    href={artikel.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group block glass-card glass-card-hover rounded-2xl p-6
+                      focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/60"
+                  >
+                    <span className="block text-xs tracking-[0.15em] uppercase text-gold mb-2">
+                      {artikel.medium} · {artikel.datum}
+                    </span>
+                    <span className="flex items-start gap-2 text-foreground/90 font-medium leading-snug">
+                      {artikel.titel}
+                      <svg
+                        aria-hidden="true"
+                        className="mt-1 w-3.5 h-3.5 shrink-0 text-foreground/40 transition-colors duration-300 group-hover:text-gold"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H9m8 0v8" />
+                      </svg>
+                    </span>
+                    <span className="mt-2 block text-sm text-foreground/60 leading-relaxed">
+                      {artikel.notiz}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </section>
 
           <section>

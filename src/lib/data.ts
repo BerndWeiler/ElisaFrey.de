@@ -2,6 +2,7 @@ import {
   Fight,
   GalleryImage,
   NaechsterKampf,
+  Presseartikel,
   Sponsor,
   SponsoringPaket,
   Video,
@@ -183,6 +184,31 @@ export const reichweite = [
   { wert: "", label: "Follower auf Instagram" },
   { wert: "", label: "Zuschauer am Kampfabend" },
   { wert: "", label: "Reichweite pro Kampfbeitrag" },
+];
+
+/**
+ * Berichterstattung. Steht im Pressebereich.
+ * Beide Artikel am 03.08.2026 abgerufen und inhaltlich geprueft. Neue
+ * Eintraege bitte nur mit tatsaechlich geprueftem Titel und Datum, nicht
+ * aus dem Gedaechtnis.
+ */
+export const presseartikel: Presseartikel[] = [
+  {
+    medium: "Kronen Zeitung",
+    titel: "Mit früherem Mr. Universum zum Box-Triumph",
+    datum: "17.04.2026",
+    url: "https://www.krone.at/4109751",
+    notiz:
+      "Bericht über die Titelverteidigung am Stanglwirt, mit Stimmen aus dem Umfeld des Kampfabends.",
+  },
+  {
+    medium: "JetSet-Media",
+    titel: "Charity-Kampf von Profiboxerin Elisa Frey im Bio-Hotel Stanglwirt",
+    datum: "20.04.2026",
+    url: "https://www.jetset-media.de/charity-kampf-von-profiboxerin-elisa-frey-im-bio-hotel-stanglwirt/",
+    notiz:
+      "Ausführliche Reportage vom Kampfabend, dessen Erlös an den Irmengard Hof der Björn Schulz Stiftung ging.",
+  },
 ];
 
 /** Bildrechte. Steht im Impressum und im Pressebereich. */

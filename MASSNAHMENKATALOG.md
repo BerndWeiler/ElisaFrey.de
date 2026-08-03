@@ -350,6 +350,8 @@ Das trifft zwei Gruppen gleichzeitig: Menschen, die verstehen wollen, wen sie da
 
 **Umgesetzt am 03.08.2026 als Entwurf:** Neue Sektion „Der Weg" zwischen dem Band „Nächster Kampf" und den Kämpfen (`src/components/sections/Weg.tsx`), zweispaltig mit Portraitaufnahme. Der erste Absatz ist ausformuliert und vollständig aus den geprüften Kampfdaten in `src/lib/data.ts` belegt. Werdegang, Trainingsalltag und Ziele stehen als sichtbar markierte Lücken. Sie sind Aussagen über eine reale Person und werden nicht erfunden. Der Navigationspunkt „Der Weg" ist ergänzt; die Leiste klappt jetzt erst ab `lg` auf, weil sechs Punkte bei 768 px in den Schriftzug liefen.
 
+**Nachtrag 03.08.2026:** Statt einer Standaufnahme steht links jetzt ein Trainingsvideo (Pratzentraining vor Bergkulisse, `public/videos/training-berge.mp4`). Quelle war ein 22-Sekunden-Clip; ab Sekunde 15,1 lief eine Sponsorentafel mit nicht mehr aktuellen Partnern, deshalb bei 14,8 s geschnitten. Der Zuschnitt auf 4:5 steckt in der Datei: Im Hochformat 9:16 war die Videospalte fast doppelt so hoch wie der Text. 2,5 MB, ohne Tonspur, wird erst geladen, wenn die Sektion in Sichtweite kommt.
+
 ### C2. Es gibt kein Sponsoring-Angebot
 Die Sektion „Unterstützer" zeigt vier Logos und sonst nichts. Kein Satz dazu, was Sponsoring bei Elisa bedeutet, keine Leistungen, keine Reichweitenzahlen, keine Handlungsaufforderung. Ein Interessent müsste den Umweg über das allgemeine Kontaktformular gehen und selbst formulieren, was er eigentlich will.
 
@@ -386,6 +388,8 @@ Journalisten und Sponsoren brauchen wiederkehrend dasselbe: Kurzvita zum Kopiere
 **Umgesetzt am 03.08.2026:** Unterseite `/presse` mit Kurzvita zum Kopieren (Schaltfläche, im Browser geprüft), Faktenblatt aus den geprüften Daten, Hinweis zum Bildmaterial samt Urheberangabe und direktem Ansprechpartner mit E-Mail-Adresse. Verlinkt in der Fußzeile, in `public/sitemap.xml` aufgenommen, indexierbar (anders als Impressum und Datenschutz).
 
 Druckauflösung wird bewusst nicht angeboten, sondern auf Anfrage zugesagt: Das vorhandene Material ist fürs Web aufbereitet und dafür zu klein.
+
+**Nachtrag 03.08.2026:** Abschnitt „Berichterstattung" mit zwei geprüften Artikeln: Kronen Zeitung vom 17.04.2026 und JetSet-Media vom 20.04.2026, beide über die Titelverteidigung am Stanglwirt. Beide am 03.08.2026 abgerufen und inhaltlich gelesen. Sie belegen Reichweite und prominentes Umfeld besser als jede eigene Beschreibung. Weitere Artikel gehören in `presseartikel` in `src/lib/data.ts`, aber nur mit tatsächlich geprüftem Titel und Datum.
 
 ### C6. Der Fotograf wird nirgends genannt
 Die Galeriebilder tragen das Wasserzeichen „© marc_rene_lochmann". Weder im Impressum noch sonst irgendwo auf der Seite wird er als Urheber genannt.

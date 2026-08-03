@@ -142,7 +142,7 @@ export const wegAbsaetze: WegAbsatz[] = [
  */
 export const sponsoringPakete: SponsoringPaket[] = [
   {
-    name: "Partner",
+    name: "Bronze",
     beschreibung: "Der Einstieg. Sichtbarkeit auf der Website und in den Kanälen.",
     leistungen: [
       "Logo auf dieser Website, verlinkt auf Ihre Seite",
@@ -151,11 +151,10 @@ export const sponsoringPakete: SponsoringPaket[] = [
     ],
   },
   {
-    name: "Hauptpartner",
+    name: "Silber",
     beschreibung: "Sichtbar im Ring, an dem Ort, an dem die Kameras stehen.",
-    hervorgehoben: true,
     leistungen: [
-      "Alle Leistungen aus Partner",
+      "Alle Leistungen aus Bronze",
       "Logo auf Hose und Robe",
       "Nennung bei Ringansage und in Interviews",
       "Gemeinsame Aufnahmen aus dem Training",
@@ -163,10 +162,14 @@ export const sponsoringPakete: SponsoringPaket[] = [
     ],
   },
   {
-    name: "Namenspartner",
+    // Die oberste Stufe traegt als einzige den Goldrahmen. Gold ist auf dieser
+    // Seite die Auszeichnungsfarbe, deshalb muss sie zur Stufe „Gold" gehoeren
+    // und nicht zu einer darunter.
+    name: "Gold",
     beschreibung: "Die exklusive Stufe. Eine Marke, ein Auftritt.",
+    hervorgehoben: true,
     leistungen: [
-      "Alle Leistungen aus Hauptpartner",
+      "Alle Leistungen aus Silber",
       "Exklusive Position auf der Kampfausrüstung",
       "Auftritte bei Ihren Firmenterminen, auf Wunsch mit Trainingseinheit",
       "Gemeinsame Kampagne, inhaltlich frei abgestimmt",

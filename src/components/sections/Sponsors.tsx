@@ -113,8 +113,8 @@ export default function Sponsors() {
 
           {/* Pakete
               Karten sind hier die richtige Form: Die drei Stufen werden bewusst
-              nebeneinander verglichen. Die mittlere ist die empfohlene und
-              deshalb als einzige goldgerahmt. */}
+              nebeneinander verglichen. Die oberste Stufe traegt als einzige den
+              Goldrahmen, siehe Kommentar bei sponsoringPakete in data.ts. */}
           <StaggerChildren
             className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 items-stretch"
             staggerDelay={0.12}

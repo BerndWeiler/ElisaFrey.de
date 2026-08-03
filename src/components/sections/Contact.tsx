@@ -7,14 +7,15 @@ import GlassCard from "@/components/ui/GlassCard";
 import Button from "@/components/ui/Button";
 import FadeIn from "@/components/animations/FadeIn";
 import { profile } from "@/lib/data";
-
-const EMPFAENGER = "bjoern.schulz.coach@gmx.de";
+import { BETREFF_EVENT, EMPFAENGER } from "@/lib/kontakt";
 
 type Status = "idle" | "sending" | "success" | "error";
 
 export default function Contact() {
   const [status, setStatus] = useState<Status>("idle");
+  const [betreff, setBetreff] = useState("");
   const meldungRef = useRef<HTMLDivElement>(null);
+  const betreffRef = useRef<HTMLInputElement>(null);
 
   // Fokus auf die Rueckmeldung setzen, damit Screenreader sie ansagen.
   useEffect(() => {
@@ -22,6 +23,22 @@ export default function Contact() {
       meldungRef.current?.focus();
     }
   }, [status]);
+
+  // Betreff vorbelegen, wenn der Besucher ueber einen bestimmten Einstieg kommt
+  // (etwa „Sponsoring anfragen"). So kommt die Anfrage nicht als allgemeine
+  // Nachricht an, und der Absender muss nicht selbst formulieren, worum es geht.
+  useEffect(() => {
+    const uebernehmen = (e: Event) => {
+      const wert = (e as CustomEvent<string>).detail;
+      if (typeof wert !== "string" || wert === "") return;
+      setBetreff(wert);
+      // Der Sprung zum Anker laeuft ueber Lenis und braucht einen Moment.
+      window.setTimeout(() => betreffRef.current?.focus(), 900);
+    };
+
+    window.addEventListener(BETREFF_EVENT, uebernehmen);
+    return () => window.removeEventListener(BETREFF_EVENT, uebernehmen);
+  }, []);
 
   return (
     <section id="kontakt" className="relative py-20 md:py-32 px-6">
@@ -189,6 +206,9 @@ export default function Contact() {
                       id="subject"
                       name="subject"
                       required
+                      ref={betreffRef}
+                      value={betreff}
+                      onChange={(e) => setBetreff(e.target.value)}
                       className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-foreground placeholder:text-white/20 focus:outline-none focus:border-gold/50 focus:shadow-[0_0_10px_rgba(200,162,78,0.1)] transition-all"
                       placeholder="Worum geht es?"
                     />

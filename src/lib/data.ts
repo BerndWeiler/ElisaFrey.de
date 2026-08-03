@@ -1,4 +1,24 @@
-import { Fight, GalleryImage, Sponsor, Video } from "@/types";
+import {
+  Fight,
+  GalleryImage,
+  NaechsterKampf,
+  Sponsor,
+  SponsoringPaket,
+  Video,
+  WegAbsatz,
+} from "@/types";
+
+/**
+ * ENTWURFSMODUS
+ *
+ * Solange `true`, werden alle Stellen, an denen noch Text oder Zahlen von
+ * Elisa fehlen, sichtbar als Luecke markiert. Das ist der Zustand, in dem sie
+ * die Seite zur Freigabe sieht: Sie erkennt sofort, was noch von ihr kommt.
+ *
+ * Sobald alle Platzhalter ersetzt sind, hier auf `false` stellen. Dann
+ * verschwinden die Markierungen und die Seite ist oeffentlich vorzeigbar.
+ */
+export const ENTWURFSMODUS = true;
 
 export const profile = {
   name: "Elisa Frey",
@@ -72,6 +92,104 @@ export const fights: Fight[] = [
     round: 1,
   },
 ];
+
+/**
+ * Naechster Kampf.
+ * Sobald ein Termin feststeht: `datum`, `datumIso`, `gegnerin`, `ort` und
+ * `titel` ausfuellen. Dann bitte auch einen `SportsEvent`-Eintrag im JSON-LD
+ * in src/app/layout.tsx ergaenzen, sonst kennt Google den Termin nicht.
+ */
+export const naechsterKampf: NaechsterKampf = {
+  platzhalter: "Der nächste Titelkampf ist in Planung. Termin folgt.",
+};
+
+/**
+ * Sektion „Der Weg".
+ * Der erste Absatz ist aus den gepruefen Kampfdaten dieser Datei belegt.
+ * Alles mit `vonElisa: true` ist ein Platzhalter und muss durch Elisas
+ * eigene Worte ersetzt werden. Nichts davon ist erfunden, es steht bewusst
+ * als Luecke da.
+ */
+export const wegAbsaetze: WegAbsatz[] = [
+  {
+    text:
+      "Sechs Kämpfe, sechs Siege, keiner davon über die volle Distanz. Fünf endeten in der ersten oder dritten Runde. Im April 2025 habe ich am Stanglwirt den Titel der BDB Deutschen Meisterin im Super-Fliegengewicht geholt, ein Jahr später habe ich ihn am selben Ort gegen Oliwia Koziura verteidigt, durch technischen K. o. in Runde drei.",
+  },
+  {
+    vonElisa: true,
+    text:
+      "Hier fehlen drei bis vier Sätze über den Weg zum Boxen: Herkunft, Alter beim Einstieg, was den Ausschlag gegeben hat, welcher Verein.",
+  },
+  {
+    vonElisa: true,
+    text:
+      "Hier fehlen zwei bis drei Sätze über den Trainingsalltag: wie oft, wo, mit wem, was den eigenen Stil ausmacht. Trainer und Manager ist Björn Schulz.",
+  },
+  {
+    vonElisa: true,
+    text:
+      "Hier fehlen zwei bis drei Sätze über die Ziele der nächsten zwei Jahre: internationaler Titel, Gewichtsklasse, Gegnerinnen, ein konkreter Wunsch.",
+  },
+];
+
+/**
+ * Sponsoring-Pakete.
+ * ENTWURF. Die Leistungen sind ein Vorschlag und muessen mit Elisa und ihrem
+ * Management abgestimmt werden, bevor die Seite oeffentlich geht. Preise
+ * stehen bewusst nicht drin, das ist im Sponsoring ueblich und haelt die
+ * Verhandlung offen.
+ */
+export const sponsoringPakete: SponsoringPaket[] = [
+  {
+    name: "Partner",
+    beschreibung: "Der Einstieg. Sichtbarkeit auf der Website und in den Kanälen.",
+    leistungen: [
+      "Logo auf dieser Website, verlinkt auf Ihre Seite",
+      "Nennung in den Beiträgen rund um jeden Kampf",
+      "Freigegebenes Bildmaterial zur eigenen Verwendung",
+    ],
+  },
+  {
+    name: "Hauptpartner",
+    beschreibung: "Sichtbar im Ring, an dem Ort, an dem die Kameras stehen.",
+    hervorgehoben: true,
+    leistungen: [
+      "Alle Leistungen aus Partner",
+      "Logo auf Hose und Robe",
+      "Nennung bei Ringansage und in Interviews",
+      "Gemeinsame Aufnahmen aus dem Training",
+      "Ihre Präsenz vor Ort an den Kampfterminen",
+    ],
+  },
+  {
+    name: "Namenspartner",
+    beschreibung: "Die exklusive Stufe. Eine Marke, ein Auftritt.",
+    leistungen: [
+      "Alle Leistungen aus Hauptpartner",
+      "Exklusive Position auf der Kampfausrüstung",
+      "Auftritte bei Ihren Firmenterminen, auf Wunsch mit Trainingseinheit",
+      "Gemeinsame Kampagne, inhaltlich frei abgestimmt",
+    ],
+  },
+];
+
+/**
+ * Reichweitenzahlen fuer das Sponsoring-Modul.
+ * ENTWURF: Die Werte sind Platzhalter. Echte Zahlen kommen aus dem
+ * Instagram-Konto und von den Veranstaltern. Nichts hiervon raten, ein
+ * Sponsor prueft das nach.
+ */
+export const reichweite = [
+  { wert: "", label: "Follower auf Instagram" },
+  { wert: "", label: "Zuschauer am Kampfabend" },
+  { wert: "", label: "Reichweite pro Kampfbeitrag" },
+];
+
+/** Bildrechte. Steht im Impressum und im Pressebereich. */
+export const fotograf = {
+  name: "marc_rene_lochmann",
+  hinweis: "Alle Kampf- und Portraitaufnahmen auf dieser Website",
+};
 
 export const galleryImages: GalleryImage[] = [
   {

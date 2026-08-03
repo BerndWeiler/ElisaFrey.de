@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
+  { label: "Der Weg", href: "#weg" },
   { label: "Kämpfe", href: "#kaempfe" },
   { label: "Galerie", href: "#galerie" },
   { label: "Videos", href: "#videos" },
@@ -46,8 +47,10 @@ export default function Navbar() {
             Elisa Frey
           </a>
 
-          {/* Desktop Links */}
-          <div className="hidden md:flex items-center gap-10">
+          {/* Desktop Links
+              Erst ab lg: Mit dem sechsten Punkt („Der Weg") wird die Reihe bei
+              768px zu eng und die Links liefen in den Schriftzug links hinein. */}
+          <div className="hidden lg:flex items-center gap-7 xl:gap-10">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -61,7 +64,7 @@ export default function Navbar() {
 
           {/* Hamburger */}
           <button
-            className="md:hidden relative w-8 h-8 flex flex-col items-center justify-center gap-1.5"
+            className="lg:hidden relative w-8 h-8 flex flex-col items-center justify-center gap-1.5"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Menü"
           >

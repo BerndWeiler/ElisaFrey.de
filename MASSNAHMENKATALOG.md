@@ -5,7 +5,9 @@
 
 Jeder Punkt unten ist am Code oder an einer Messung belegt. Vermutungen sind als solche gekennzeichnet.
 
-> **Umsetzungsstand 02.08.2026:** Erledigt sind **A1 bis A8** und aus Block B **B1** (Sponsorenlogos), **B3** (geprüft und bewusst geschlossen), **B4** (Assets), **B6 teilweise** (Pflichtlinks im Footer), **B8/B10 teilweise** (Anrede und Anglizismen im Kontaktformular). Offen: B2, B5, B7, Reste von B6/B8/B9/B10 sowie die Blöcke C und D. Entscheidungsbedürftig: **A8** (Formularversand in die USA).
+> **Umsetzungsstand 03.08.2026:** Erledigt sind **A1 bis A8**, aus Block B **B1** (Sponsorenlogos), **B3** (geprüft und bewusst geschlossen), **B4** (Assets), **B6 teilweise** (Pflichtlinks im Footer), **B8/B10 teilweise** (Anrede und Anglizismen im Kontaktformular), aus Block C **C1, C2, C3, C5 und C6** (gebaut am 03.08.2026, siehe unten). Offen: B2, B5, B7, Reste von B6/B8/B9/B10, **C4** (Kampfvideo) sowie Block D. Entscheidungsbedürftig: **A8** (Formularversand in die USA, von Bernd am 03.08.2026 bewusst akzeptiert).
+>
+> **Entwurfsmodus:** C1, C2 und C3 stehen als Entwurf mit sichtbar markierten Lücken auf der Seite. Der Schalter `ENTWURFSMODUS` in `src/lib/data.ts` steuert die Markierungen. Sobald Elisas Texte und die Reichweitenzahlen eingetragen sind, auf `false` stellen. Erst dann ist die Seite öffentlich vorzeigbar.
 >
 > **Live-Stand:** Alles bis einschließlich **A6** ist öffentlich (geprüft: `/impressum` liefert HTTP 200, Meta-Beschreibung zeigt 100 % KO-Rate, Popup weg, Sponsoren-PNGs laden, Videos in 1080×1920, Startseite nach 363 ms geladen). **A7 ist gebaut und im `deploy`-Branch, aber noch nicht live.**
 >
@@ -345,6 +347,9 @@ Das trifft zwei Gruppen gleichzeitig: Menschen, die verstehen wollen, wen sie da
 
 **Maßnahme:** Sektion „Über mich" oder „Der Weg" zwischen Hero und Kämpfe, 200 bis 300 Wörter: Werdegang, Kampfstil (die hohe Abschlussquote lässt sich aus den eigenen Daten belegen), Trainingsumfeld, Ziele für die nächsten zwei Jahre. Aufwand: mittel, hauptsächlich Textarbeit mit Elisa.
 
+
+**Umgesetzt am 03.08.2026 als Entwurf:** Neue Sektion „Der Weg" zwischen dem Band „Nächster Kampf" und den Kämpfen (`src/components/sections/Weg.tsx`), zweispaltig mit Portraitaufnahme. Der erste Absatz ist ausformuliert und vollständig aus den geprüften Kampfdaten in `src/lib/data.ts` belegt. Werdegang, Trainingsalltag und Ziele stehen als sichtbar markierte Lücken. Sie sind Aussagen über eine reale Person und werden nicht erfunden. Der Navigationspunkt „Der Weg" ist ergänzt; die Leiste klappt jetzt erst ab `lg` auf, weil sechs Punkte bei 768 px in den Schriftzug liefen.
+
 ### C2. Es gibt kein Sponsoring-Angebot
 Die Sektion „Unterstützer" zeigt vier Logos und sonst nichts. Kein Satz dazu, was Sponsoring bei Elisa bedeutet, keine Leistungen, keine Reichweitenzahlen, keine Handlungsaufforderung. Ein Interessent müsste den Umweg über das allgemeine Kontaktformular gehen und selbst formulieren, was er eigentlich will.
 
@@ -352,10 +357,18 @@ Das ist besonders auffällig, weil im Projektordner bereits ein Outreach-Plan f�
 
 **Maßnahme:** Unter die Logos ein Sponsoring-Modul: kurzer Nutzenabsatz, zwei bis drei Paketstufen mit konkreten Leistungen (Logo auf Hose, Bandenwerbung, Social-Media-Nennungen, Auftritte), belastbare Reichweitenzahlen, eigener Kontaktweg mit vorbelegtem Betreff. Optional ein Sponsoring-PDF zum Herunterladen. Aufwand: mittel bis groß, inhaltlich abzustimmen.
 
+
+**Umgesetzt am 03.08.2026 als Entwurf:** Unter den Logos ein Sponsoring-Modul mit Nutzenabsatz, drei Paketstufen („Partner", „Hauptpartner" hervorgehoben, „Namenspartner"), Konditionen auf Anfrage und eigenem Kontaktweg. Die Schaltfläche „Sponsoring anfragen" springt zum Formular und legt den Betreff „Sponsoring-Anfrage" vor, damit die Anfrage nicht als allgemeine Nachricht ankommt (`src/lib/kontakt.ts`, Fensterereignis statt zusätzlichem Zustandsspeicher). Im Browser geprüft: Betreff wird gesetzt und bekommt den Fokus.
+
+Die Leistungen sind ein Vorschlag und mit Elisa abzustimmen. Die Reichweitenzahlen stehen als Lücke, weil ein Sponsor sie nachprüft und Geschätztes dort nichts verloren hat.
+
 ### C3. Die Seite endet in der Vergangenheit
 Es gibt keinen Hinweis auf den nächsten Kampf, keine Termine, keinen Ausblick. Der jüngste Eintrag ist vom 12.04.2026, also knapp vier Monate alt. Für Fans gibt es keinen Grund wiederzukommen, für Sponsoren keinen Anlass, jetzt zu handeln.
 
 **Maßnahme:** Sektion „Nächster Kampf" oberhalb der Bilanz. Solange kein Datum feststeht, ein ehrlicher Platzhalter („Nächster Titelkampf in Planung"). Sobald ein Termin steht, mit `SportsEvent`-Schema im JSON-LD, dann kann Google ihn als Termin ausspielen. Aufwand: mittel.
+
+
+**Umgesetzt am 03.08.2026:** Band direkt unter dem Hero (`src/components/sections/NaechsterKampf.tsx`). Ohne bestätigten Termin steht dort „Der nächste Titelkampf ist in Planung. Termin folgt." samt Verweis auf Instagram, wo der Termin zuerst stehen wird. Sobald ein Datum feststeht: in `naechsterKampf` in `src/lib/data.ts` eintragen und den passenden `SportsEvent`-Eintrag im JSON-LD ergänzen.
 
 ### C4. Kein einziges Kampfvideo
 `src/lib/data.ts:160-162`
@@ -369,10 +382,20 @@ Journalisten und Sponsoren brauchen wiederkehrend dasselbe: Kurzvita zum Kopiere
 
 **Maßnahme:** Pressebereich als Unterseite, plus eine direkte E-Mail-Adresse für Anfragen. Aufwand: mittel.
 
+
+**Umgesetzt am 03.08.2026:** Unterseite `/presse` mit Kurzvita zum Kopieren (Schaltfläche, im Browser geprüft), Faktenblatt aus den geprüften Daten, Hinweis zum Bildmaterial samt Urheberangabe und direktem Ansprechpartner mit E-Mail-Adresse. Verlinkt in der Fußzeile, in `public/sitemap.xml` aufgenommen, indexierbar (anders als Impressum und Datenschutz).
+
+Druckauflösung wird bewusst nicht angeboten, sondern auf Anfrage zugesagt: Das vorhandene Material ist fürs Web aufbereitet und dafür zu klein.
+
 ### C6. Der Fotograf wird nirgends genannt
 Die Galeriebilder tragen das Wasserzeichen „© marc_rene_lochmann". Weder im Impressum noch sonst irgendwo auf der Seite wird er als Urheber genannt.
 
 **Maßnahme:** Bildnachweis ins Impressum, optional ein `credit`-Feld pro Bild in `src/types/index.ts` und Anzeige in der Lightbox. Aufwand: klein.
+
+
+**Umgesetzt am 03.08.2026:** Abschnitt „Bildnachweise" im Impressum mit `© marc_rene_lochmann`, dazu ein Satz zu den Sponsorenlogos. Zusätzlich im Pressebereich, weil dort das Material angefragt wird. Das Wasserzeichen im Bild ersetzt die Urheberbenennung nach § 13 UrhG nicht.
+
+Offen: Der bürgerliche Name des Fotografen wäre die sauberere Angabe als das Instagram-Kürzel.
 
 ---
 

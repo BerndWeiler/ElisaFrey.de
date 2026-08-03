@@ -116,6 +116,21 @@ export default function Impressum() {
             </p>
           </section>
 
+          {/* Bildnachweis: Der Urheber ist nach § 13 UrhG zu nennen. Die Aufnahmen
+              tragen zwar ein Wasserzeichen, das ersetzt die Nennung aber nicht. */}
+          <section>
+            <h2 className="text-foreground font-medium text-base mb-2">Bildnachweise</h2>
+            <p>
+              Alle Kampf- und Portraitaufnahmen auf dieser Website:
+              <br />
+              <span className="text-foreground/90">© marc_rene_lochmann</span>
+            </p>
+            <p className="mt-2">
+              Die Logos der auf dieser Website genannten Unterstützer sind Eigentum der
+              jeweiligen Unternehmen und werden mit deren Einverständnis verwendet.
+            </p>
+          </section>
+
           <section>
             <h2 className="text-foreground font-medium text-base mb-2">Verbraucherstreitbeilegung</h2>
             <p>

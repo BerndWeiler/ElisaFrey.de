@@ -3,6 +3,8 @@
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/sections/Hero";
+import NaechsterKampfBand from "@/components/sections/NaechsterKampf";
+import Weg from "@/components/sections/Weg";
 import Fights from "@/components/sections/Fights";
 import Sponsors from "@/components/sections/Sponsors";
 import Gallery from "@/components/sections/Gallery";
@@ -23,6 +25,8 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <NaechsterKampfBand />
+        <Weg />
         <Fights />
         <Gallery />
         <Videos />

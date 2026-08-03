@@ -24,6 +24,10 @@ export default function Footer() {
             (§ 5 DDG). Bei /20 lag der Kontrast zum Hintergrund bei 1,71:1, die Links waren
             praktisch unsichtbar. /60 ergibt 6,78:1 und besteht damit WCAG AA. */}
         <div className="flex items-center gap-4">
+          <Link href="/presse" className="text-foreground/60 hover:text-gold transition-colors text-xs tracking-wider">
+            Presse
+          </Link>
+          <span className="text-foreground/30">|</span>
           <Link href="/impressum" className="text-foreground/60 hover:text-gold transition-colors text-xs tracking-wider">
             Impressum
           </Link>

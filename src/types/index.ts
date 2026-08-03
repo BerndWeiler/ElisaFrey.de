@@ -23,6 +23,41 @@ export interface Video {
   poster?: string;
 }
 
+/**
+ * Der naechste Kampftermin. Solange `datum` fehlt, zeigt die Sektion den
+ * ehrlichen Platzhaltertext statt eines erfundenen Termins.
+ */
+export interface NaechsterKampf {
+  /** Format DD.MM.YYYY. Leer lassen, solange kein Termin bestaetigt ist. */
+  datum?: string;
+  /** ISO-Format YYYY-MM-DD, wird fuer das JSON-LD und die Restzeit gebraucht. */
+  datumIso?: string;
+  gegnerin?: string;
+  ort?: string;
+  titel?: string;
+  /** Wird angezeigt, solange kein Datum feststeht. */
+  platzhalter: string;
+}
+
+/**
+ * Ein Absatz der Sektion „Der Weg".
+ * `vonElisa` markiert Absaetze, die Elisa selbst schreiben muss. Sie werden
+ * im Entwurfsmodus sichtbar als Luecke dargestellt, damit beim Durchsehen
+ * klar ist, was noch fehlt und wie viel Text dort hingehoert.
+ */
+export interface WegAbsatz {
+  text: string;
+  vonElisa?: boolean;
+}
+
+export interface SponsoringPaket {
+  name: string;
+  beschreibung: string;
+  leistungen: string[];
+  /** Hebt die empfohlene Stufe optisch hervor (glass-gold). */
+  hervorgehoben?: boolean;
+}
+
 export interface Sponsor {
   name: string;
   logo: string;

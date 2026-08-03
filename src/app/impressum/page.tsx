@@ -123,7 +123,16 @@ export default function Impressum() {
             <p>
               Alle Kampf- und Portraitaufnahmen auf dieser Website:
               <br />
-              <span className="text-foreground/90">© marc_rene_lochmann</span>
+              <span className="text-foreground/90">© Marc Rene Lochmann</span>
+              <br />
+              <a
+                href="https://www.instagram.com/marc_rene_lochmann/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gold hover:text-gold-light transition-colors"
+              >
+                @marc_rene_lochmann auf Instagram
+              </a>
             </p>
             <p className="mt-2">
               Die Logos der auf dieser Website genannten Unterstützer sind Eigentum der

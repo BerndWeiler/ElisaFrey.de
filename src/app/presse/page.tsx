@@ -109,8 +109,16 @@ export default function Presse() {
                 Druckauflösung stelle ich auf Anfrage bereit.
               </p>
               <p>
-                Alle Kampf- und Portraitaufnahmen stammen von {fotograf.name}. Bei jeder
-                Veröffentlichung ist die Urheberangabe{" "}
+                Alle Kampf- und Portraitaufnahmen stammen von{" "}
+                <a
+                  href={fotograf.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gold hover:text-gold-light transition-colors"
+                >
+                  {fotograf.name}
+                </a>{" "}
+                ({fotograf.handle}). Bei jeder Veröffentlichung ist die Urheberangabe{" "}
                 <span className="text-foreground/90">© {fotograf.name}</span> anzugeben.
               </p>
             </div>

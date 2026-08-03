@@ -140,6 +140,20 @@ export default function Datenschutz() {
               </a>
               .
             </p>
+            <p className="mt-2">
+              Die Verarbeitung erfolgt in meinem Auftrag auf Grundlage eines Vertrags zur
+              Auftragsverarbeitung nach Art. 28 DSGVO. Hostinger stellt diesen als Data
+              Processing Addendum bereit, das Bestandteil der Nutzungsbedingungen ist:{" "}
+              <a
+                href="https://www.hostinger.com/de/legal/dpa"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gold hover:text-gold-light transition-colors"
+              >
+                hostinger.com/de/legal/dpa
+              </a>
+              .
+            </p>
           </section>
 
           <section>

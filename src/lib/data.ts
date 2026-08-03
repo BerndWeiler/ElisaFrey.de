@@ -187,8 +187,10 @@ export const reichweite = [
 
 /** Bildrechte. Steht im Impressum und im Pressebereich. */
 export const fotograf = {
-  name: "marc_rene_lochmann",
-  hinweis: "Alle Kampf- und Portraitaufnahmen auf dieser Website",
+  name: "Marc Rene Lochmann",
+  /** So lautet das Wasserzeichen in den Aufnahmen. */
+  handle: "@marc_rene_lochmann",
+  instagram: "https://www.instagram.com/marc_rene_lochmann/",
 };
 
 export const galleryImages: GalleryImage[] = [

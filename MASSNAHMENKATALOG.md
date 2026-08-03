@@ -11,7 +11,9 @@ Jeder Punkt unten ist am Code oder an einer Messung belegt. Vermutungen sind als
 >
 > **Entwurfsmodus:** C1, C2 und C3 stehen als Entwurf mit sichtbar markierten Lücken auf der Seite. Der Schalter `ENTWURFSMODUS` in `src/lib/data.ts` steuert die Markierungen. Sobald Elisas Texte und die Reichweitenzahlen eingetragen sind, auf `false` stellen. Erst dann ist die Seite öffentlich vorzeigbar.
 >
-> **Live-Stand:** Alles bis einschließlich **A6** ist öffentlich (geprüft: `/impressum` liefert HTTP 200, Meta-Beschreibung zeigt 100 % KO-Rate, Popup weg, Sponsoren-PNGs laden, Videos in 1080×1920, Startseite nach 363 ms geladen). **A7 ist gebaut und im `deploy`-Branch, aber noch nicht live.**
+> **Live-Stand:** Alles bis einschließlich **A7** ist öffentlich. Nachgemessen am 03.08.2026: `/impressum` und `/datenschutz` liefern HTTP 200, beide nennen Valueate, Bernd Weiler, Biberach und die Umsatzsteuerangabe wortgleich mit dem lokalen Stand. `last-modified` der Rechtstexte ist der 02.08.2026, 15:07 UTC. Die frühere Notiz „A7 noch nicht live" ist damit überholt: Der `deploy`-Branch war zum Prüfzeitpunkt am 02.08. offenbar bereits gezogen worden.
+>
+> **Nicht live sind:** Block B in Gänze sowie C1, C2, C3, C5 und C6. Diese Änderungen liegen als lokale Commits vor und stehen zur Abstimmung auf `https://elisafrey-entwurf.netlify.app` (Stand 03.08.2026, Commit `0890649`). Der Bildnachweis für Marc-Rene Lochmann im Impressum gehört dazu und fehlt öffentlich noch.
 >
 > **Merksatz für künftige Änderungen:** Push auf `main` bedeutet nicht automatisch live, und der Zug läuft auch nicht verzögert von selbst. Belegt am 02.08.2026: `deploy`-Branch um 13:39 aktualisiert, um 15:54 lieferte Hostinger weiterhin den Stand von 13:05. Nach jedem Actions-Lauf muss der Branch im hPanel gezogen werden. Kontrolle: `curl -sI https://elisafrey.com/ | grep last-modified`.
 

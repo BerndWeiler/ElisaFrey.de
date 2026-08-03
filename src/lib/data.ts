@@ -106,10 +106,24 @@ export const naechsterKampf: NaechsterKampf = {
 
 /**
  * Sektion „Der Weg".
- * Der erste Absatz ist aus den gepruefen Kampfdaten dieser Datei belegt.
- * Alles mit `vonElisa: true` ist ein Platzhalter und muss durch Elisas
- * eigene Worte ersetzt werden. Nichts davon ist erfunden, es steht bewusst
- * als Luecke da.
+ *
+ * Nichts hiervon ist erfunden. Jeder Satz steht entweder in den Kampfdaten
+ * weiter oben in dieser Datei oder in einem der beiden Artikel unter
+ * `presseartikel`:
+ *
+ * - Absatz 1: Kampfdaten dieser Datei.
+ * - Absatz 2: Alter, Sportstudium, Kurse am Stanglwirt und die Kinderstunden
+ *   stehen in beiden Artikeln (Krone 17.04.2026, JetSet-Media 20.04.2026).
+ * - Absatz 3: Bjoern Schulz als sportlicher Leiter, die Vorbereitung mit
+ *   Ralf Moeller und Jana Ina Zarella stehen in der Krone.
+ * - Absatz 4: Benefizzweck und die Zusammenarbeit mit dem Irmengard Hof
+ *   stehen in JetSet-Media, dort auch als Zitat von Elisa und Bjoern Schulz.
+ *   Die Spendensumme steht bewusst nicht drin: Die Krone nennt 12.000 Euro,
+ *   JetSet-Media ueber 7.000 Euro. Widersprueche gehoeren nicht auf die Seite.
+ *
+ * Elisa muss den Text trotzdem lesen und freigeben. Auch Redaktionen irren:
+ * Die Krone schreibt „Verena Pooth" statt Verona und „Oliwa Koziura" statt
+ * Oliwia.
  */
 export const wegAbsaetze: WegAbsatz[] = [
   {
@@ -117,19 +131,21 @@ export const wegAbsaetze: WegAbsatz[] = [
       "Sechs Kämpfe, sechs Siege, keiner davon über die volle Distanz. Fünf endeten in der ersten oder dritten Runde. Im April 2025 habe ich am Stanglwirt den Titel der BDB Deutschen Meisterin im Super-Fliegengewicht geholt, ein Jahr später habe ich ihn am selben Ort gegen Oliwia Koziura verteidigt, durch technischen K. o. in Runde drei.",
   },
   {
-    vonElisa: true,
     text:
-      "Hier fehlen drei bis vier Sätze über den Weg zum Boxen: Herkunft, Alter beim Einstieg, was den Ausschlag gegeben hat, welcher Verein.",
+      "Ich bin 23 und studiere Sport. Der Stanglwirt in Going ist mein zweites Zuhause. Dort trainiere ich, und dort stehe ich auch selbst vor der Gruppe: Ich gebe Box- und Fitnesskurse, dazu eigene Stunden für die Kinder unter den Gästen.",
+  },
+  {
+    text:
+      "Trainiert und geführt werde ich von Björn Schulz, dem sportlichen Leiter am Stanglwirt. Auf die Titelverteidigung im April habe ich mich unter anderem mit Ralf Moeller und Jana Ina Zarella vorbereitet.",
+  },
+  {
+    text:
+      "Der Kampfabend war zugleich eine Benefizveranstaltung. Der Erlös ging an den Irmengard Hof der Björn Schulz Stiftung, eine Einrichtung für Familien mit schwer und chronisch kranken Kindern. Wir haben dort schon mehrfach mit den Kindern und ihren Eltern trainiert. Diesen Ort zu unterstützen war uns eine Herzensangelegenheit.",
   },
   {
     vonElisa: true,
     text:
-      "Hier fehlen zwei bis drei Sätze über den Trainingsalltag: wie oft, wo, mit wem, was den eigenen Stil ausmacht. Trainer und Manager ist Björn Schulz.",
-  },
-  {
-    vonElisa: true,
-    text:
-      "Hier fehlen zwei bis drei Sätze über die Ziele der nächsten zwei Jahre: internationaler Titel, Gewichtsklasse, Gegnerinnen, ein konkreter Wunsch.",
+      "Was noch fehlt, ist der Anfang und das Ziel: wie ich zum Boxen gekommen bin, woher ich komme, in welchem Verein ich angefangen habe. Und wo ich in zwei Jahren stehen will, welcher Titel, welche Gegnerin.",
   },
 ];
 
@@ -216,7 +232,7 @@ export const presseartikel: Presseartikel[] = [
 
 /** Bildrechte. Steht im Impressum und im Pressebereich. */
 export const fotograf = {
-  name: "Marc Rene Lochmann",
+  name: "Marc-Rene Lochmann",
   /** So lautet das Wasserzeichen in den Aufnahmen. */
   handle: "@marc_rene_lochmann",
   instagram: "https://www.instagram.com/marc_rene_lochmann/",

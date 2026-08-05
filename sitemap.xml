@@ -5,4 +5,11 @@
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
+  <!-- Impressum und Datenschutz stehen bewusst nicht drin, sie sind auf
+       noindex gesetzt. Der Pressebereich soll dagegen gefunden werden. -->
+  <url>
+    <loc>https://elisafrey.com/presse/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>
